@@ -1024,6 +1024,7 @@ section {
         transition: 0.3s;
         box-shadow: var(--shadow-medium);
         padding: 2rem 0;
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1049,22 +1050,35 @@ section {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
 
     .hero-title {
         font-size: 2.5rem;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
     }
 
     .about-content {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .about-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
 
     .contact-content {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .projects-grid {
@@ -1077,30 +1091,191 @@ section {
 
     .schedule-content {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .academic-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .schedule-table-container {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    .schedule-table {
+        font-size: 0.9rem;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 0.8rem 0.5rem;
     }
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero {
+        padding-top: 60px;
+        min-height: 100vh;
+    }
+
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
     }
 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 0.8rem;
     }
 
     .btn {
         width: 100%;
-        max-width: 250px;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat {
+        padding: 1rem;
+    }
+
+    .stat h3 {
+        font-size: 1.5rem;
+    }
+
+    .academic-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .academic-stat {
+        padding: 1rem;
+    }
+
+    .academic-stat h4 {
+        font-size: 1.5rem;
+    }
+
+    .schedule-table {
+        font-size: 0.8rem;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 0.6rem 0.4rem;
+    }
+
+    .project-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .skill-category {
+        padding: 1.5rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .nav-logo a {
+        font-size: 1.2rem;
+    }
+
+    .theme-toggle {
+        padding: 8px;
+    }
+
+    .floating-elements {
+        display: none;
+    }
+
+    .image-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile-photo {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    .schedule-table {
+        font-size: 0.75rem;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 0.5rem 0.3rem;
+    }
+
+    .image-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-photo {
+        width: 130px;
+        height: 130px;
     }
 }
 
