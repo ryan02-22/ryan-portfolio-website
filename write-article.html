@@ -8,6 +8,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset untuk mencegah overlapping */
+        * {
+            box-sizing: border-box;
+        }
+        
         .write-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -15,6 +20,7 @@
             min-height: 100vh;
             background: var(--bg-primary);
             color: var(--text-primary);
+            overflow-x: hidden;
         }
         
         .write-header {
@@ -39,10 +45,16 @@
             border-radius: 15px;
             padding: 40px;
             box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+            clear: both;
         }
         
         .form-group {
             margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+            clear: both;
         }
         
         .form-label {
@@ -77,6 +89,23 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        /* Mencegah text overlap */
+        .form-input, .form-textarea, .editor-content {
+            text-overflow: ellipsis;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+        }
+        
+        /* Memastikan tidak ada floating elements */
+        .form-group::after {
+            content: "";
+            display: table;
+            clear: both;
         }
         
         .form-textarea {
@@ -122,29 +151,39 @@
         
         .editor-toolbar {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 20px;
             flex-wrap: wrap;
-            padding: 15px;
+            padding: 12px;
             background: var(--bg-tertiary);
             border-radius: 8px;
             border: 1px solid var(--border-color);
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+            clear: both;
+            float: none;
         }
         
         .toolbar-btn {
-            padding: 8px 12px;
-            border: 2px solid var(--border-color);
+            padding: 6px 10px;
+            border: 1px solid var(--border-color);
             background: var(--bg-secondary);
             color: var(--text-primary);
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-size: 14px;
-            min-width: 40px;
-            height: 40px;
+            font-size: 12px;
+            min-width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+            white-space: nowrap;
+            position: relative;
+            z-index: 2;
         }
         
         .toolbar-btn:hover {
@@ -173,6 +212,13 @@
             box-sizing: border-box;
             overflow-wrap: break-word;
             word-wrap: break-word;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            clear: both;
+            float: none;
+            margin-top: 0;
+            margin-bottom: 0;
         }
         
         .editor-content:focus {
@@ -292,15 +338,21 @@
             }
             
             .editor-toolbar {
-                padding: 10px;
-                gap: 5px;
+                padding: 8px;
+                gap: 4px;
+                margin-bottom: 15px;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
             }
             
             .toolbar-btn {
-                min-width: 35px;
-                height: 35px;
-                padding: 5px 8px;
-                font-size: 12px;
+                min-width: 28px;
+                height: 28px;
+                padding: 4px 6px;
+                font-size: 10px;
+                flex-shrink: 0;
+                display: inline-flex;
             }
             
             .form-input {
@@ -329,6 +381,36 @@
             
             .write-title {
                 font-size: 2rem;
+            }
+            
+            .write-form {
+                padding: 20px 15px;
+                overflow-x: hidden;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+                overflow: hidden;
+            }
+            
+            .editor-toolbar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+            }
+            
+            .editor-toolbar::-webkit-scrollbar {
+                height: 4px;
+            }
+            
+            .editor-toolbar::-webkit-scrollbar-track {
+                background: var(--bg-primary);
+            }
+            
+            .editor-toolbar::-webkit-scrollbar-thumb {
+                background: var(--border-color);
+                border-radius: 2px;
             }
         }
     </style>
