@@ -15,25 +15,11 @@
             padding: 0;
         }
         
-        /* Reset untuk mencegah duplikasi text - hanya untuk elements yang tidak perlu pseudo-elements */
-        .form-input::before, .form-input::after,
-        .form-textarea::before, .form-textarea::after,
-        .form-select::before, .form-select::after {
-            content: none !important;
-        }
-        
-        /* Reset khusus untuk form elements */
+        /* Reset sederhana untuk form elements */
         input, textarea, select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-            color: inherit;
         }
         
         .write-container {
@@ -134,13 +120,6 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-shadow: none !important;
-            -webkit-text-stroke: none !important;
-            -webkit-text-fill-color: var(--text-light) !important;
-            text-rendering: optimizeLegibility;
         }
         
         /* Mencegah text overlap dan duplikasi */
@@ -148,11 +127,6 @@
             overflow-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
-            white-space: normal;
-            text-decoration: none;
-            text-shadow: none;
-            -webkit-text-stroke: none;
-            -webkit-text-fill-color: inherit;
         }
         
         /* Memastikan tidak ada floating elements */
@@ -166,8 +140,6 @@
         .form-input, .form-textarea, .form-select {
             float: none;
             clear: both;
-            position: relative;
-            z-index: 1;
         }
         
         /* Memastikan container tidak collapse */
@@ -201,13 +173,6 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-shadow: none !important;
-            -webkit-text-stroke: none !important;
-            -webkit-text-fill-color: var(--text-light) !important;
-            text-rendering: optimizeLegibility;
         }
         
         .form-select {
@@ -364,13 +329,6 @@
             left: 20px;
             right: 20px;
             z-index: 1;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-shadow: none !important;
-            -webkit-text-stroke: none !important;
-            -webkit-text-fill-color: var(--text-light) !important;
-            text-rendering: optimizeLegibility;
         }
         
         .form-actions {
