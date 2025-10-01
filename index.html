@@ -3,44 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Portfolio website Adha Adnan Febryan - Mahasiswa Teknik Informatika dengan keahlian dalam web development, mobile apps, dan artificial intelligence">
+    <meta name="keywords" content="portfolio, web developer, mobile developer, teknik informatika, adha adnan febryan, ryan">
+    <meta name="author" content="Adha Adnan Febryan">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Portfolio - Adha Adnan Febryan">
+    <meta property="og:description" content="Mahasiswa Teknik Informatika dengan passion dalam pengembangan teknologi">
+    <meta property="og:image" content="https://your-domain.com/ryan.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Portfolio - Adha Adnan Febryan">
+    <meta property="twitter:description" content="Mahasiswa Teknik Informatika dengan passion dalam pengembangan teknologi">
+    <meta property="twitter:image" content="https://your-domain.com/ryan.jpg">
+    
     <title>Portfolio - ADHA ADNAN FEBRYAN</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">Portfolio</a>
+                <a href="#home" aria-label="Go to homepage">Portfolio</a>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#schedule" class="nav-link">Schedule</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <div class="nav-menu" id="nav-menu" role="menubar">
+                <a href="#home" class="nav-link" role="menuitem">Home</a>
+                <a href="#about" class="nav-link" role="menuitem">About</a>
+                <a href="#skills" class="nav-link" role="menuitem">Skills</a>
+                <a href="#projects" class="nav-link" role="menuitem">Projects</a>
+                <a href="#schedule" class="nav-link" role="menuitem">Schedule</a>
+                <a href="editor.html" class="nav-link" role="menuitem">Editor</a>
+                <a href="#contact" class="nav-link" role="menuitem">Contact</a>
             </div>
-            <div class="nav-toggle" id="nav-toggle">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
-            <div class="theme-toggle">
+            </button>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
                 <i class="fas fa-moon" id="theme-icon"></i>
-            </div>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <header id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        Hi, I'm Ryan
+                        Hi, I'm Adha Adnan Febryan
                     </h1>
                     <h2 class="hero-subtitle">Mahasiswa Teknik Informatika</h2>
                     <p class="hero-description">
@@ -49,14 +102,14 @@
                         mobile apps, and artificial intelligence.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-primary" aria-label="View my portfolio projects">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary" aria-label="Contact me">Get In Touch</a>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="image-container">
                         <div class="profile-photo">
-                            <img src="ryan.jpg" alt="Profile Photo" id="profile-img">
+                            <img src="ryan.jpg" alt="Adha Adnan Febryan - Mahasiswa Teknik Informatika" id="profile-img">
                         </div>
                         <div class="floating-elements">
                             <div class="floating-element element-1"></div>
@@ -70,7 +123,7 @@
         <div class="scroll-indicator">
             <div class="scroll-arrow"></div>
         </div>
-    </section>
+        </header>
 
      <!-- Schedule Section -->
      <section id="schedule" class="schedule">
@@ -114,7 +167,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="schedule-info">
+                <aside class="schedule-info">
                     <h3>Informasi Akademik</h3>
                     <div class="academic-stats">
                         <div class="academic-stat">
@@ -135,7 +188,7 @@
                         <p>Semester 3 - Teknik Informatika</p>
                         <span class="semester-badge">Sedang Berjalan</span>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
     </section>
@@ -145,7 +198,7 @@
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
-            <div class="about-content">
+            <article class="about-content">
                 <div class="about-text">
                     <p>
                         Saya adalah mahasiswa Teknik Informatika yang memiliki passion dalam 
@@ -194,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
@@ -304,19 +357,19 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">My Projects</h2>
-            <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web</button>
-                <button class="filter-btn" data-filter="mobile">Mobile</button>
-                <button class="filter-btn" data-filter="ai">AI/ML</button>
+            <div class="projects-filter" role="tablist" aria-label="Project categories">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="projects-grid">All</button>
+                <button class="filter-btn" data-filter="web" role="tab" aria-selected="false" aria-controls="projects-grid">Web</button>
+                <button class="filter-btn" data-filter="mobile" role="tab" aria-selected="false" aria-controls="projects-grid">Mobile</button>
+                <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false" aria-controls="projects-grid">AI/ML</button>
             </div>
-            <div class="projects-grid">
+            <div class="projects-grid" id="projects-grid" role="tabpanel" aria-labelledby="projects">
                 <div class="project-card" data-category="web">
                     <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="projects/kalkulator.html" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/ryan73147/kalkulator-web" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="projects/kalkulator.html" class="project-link" target="_blank" aria-label="View Kalkulator Web project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/ryan73147/kalkulator-web" class="project-link" target="_blank" aria-label="View Kalkulator Web source code on GitHub"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -335,8 +388,8 @@
                     <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="projects/todolist.html" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/ryan73147/todolist-app" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="projects/todolist.html" class="project-link" target="_blank" aria-label="View To-Do List App project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/ryan73147/todolist-app" class="project-link" target="_blank" aria-label="View To-Do List App source code on GitHub"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -355,8 +408,8 @@
                     <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="projects/weather.html" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/ryan73147/weather-app" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="projects/weather.html" class="project-link" target="_blank" aria-label="View Weather App project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/ryan73147/weather-app" class="project-link" target="_blank" aria-label="View Weather App source code on GitHub"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -376,8 +429,8 @@
                     <div class="project-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="projects/portfolio.html" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/ryan73147/portfolio-website" class="project-link" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="projects/portfolio.html" class="project-link" target="_blank" aria-label="View Portfolio Website project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/ryan73147/portfolio-website" class="project-link" target="_blank" aria-label="View Portfolio Website source code on GitHub"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -388,6 +441,27 @@
                             <span class="tech-tag">HTML</span>
                             <span class="tech-tag">CSS</span>
                             <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    <div class="project-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="editor.html" class="project-link" target="_blank" aria-label="View Text Editor project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/ryan73147/text-editor" class="project-link" target="_blank" aria-label="View Text Editor source code on GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Text Editor</h3>
+                        <p>Editor teks online untuk mengetik makalah dan tugas</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">LocalStorage</span>
                         </div>
                     </div>
                 </div>
@@ -420,34 +494,42 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="Visit my GitHub profile"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" aria-label="Visit my LinkedIn profile"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" aria-label="Visit my Instagram profile"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Visit my Twitter profile"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" required>
-                        <label for="subject">Subject</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                        <label for="message">Message</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                <form class="contact-form" id="contact-form" aria-label="Contact Form">
+                    <fieldset>
+                        <legend>Send me a message</legend>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required aria-describedby="name-help">
+                            <label for="name">Name</label>
+                            <div id="name-help" class="sr-only">Enter your full name</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required aria-describedby="email-help">
+                            <label for="email">Email</label>
+                            <div id="email-help" class="sr-only">Enter your email address</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required aria-describedby="subject-help">
+                            <label for="subject">Subject</label>
+                            <div id="subject-help" class="sr-only">Enter the subject of your message</div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required aria-describedby="message-help"></textarea>
+                            <label for="message">Message</label>
+                            <div id="message-help" class="sr-only">Enter your message here</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </fieldset>
                 </form>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -457,5 +539,45 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adha Adnan Febryan",
+        "jobTitle": "Mahasiswa Teknik Informatika",
+        "description": "Mahasiswa Teknik Informatika dengan passion dalam pengembangan teknologi",
+        "url": "https://your-domain.com",
+        "image": "https://your-domain.com/ryan.jpg",
+        "sameAs": [
+            "https://github.com/ryan73147",
+            "https://linkedin.com/in/adha-adnan-febryan",
+            "https://instagram.com/yourusername",
+            "https://twitter.com/yourusername"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bekasi",
+            "addressCountry": "Indonesia"
+        },
+        "email": "ryan73147@gmail.com",
+        "telephone": "+62 823-2864-9895",
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Universitas Pelita Bangsa"
+        },
+        "knowsAbout": [
+            "Web Development",
+            "Mobile Development",
+            "JavaScript",
+            "HTML",
+            "CSS",
+            "React",
+            "Node.js",
+            "Python"
+        ]
+    }
+    </script>
 </body>
 </html>

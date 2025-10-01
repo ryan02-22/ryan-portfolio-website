@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor - Portfolio Adha Adnan Febryan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .editor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .editor-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .editor-tools {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .tool-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tool-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .tool-btn.secondary {
+            background: var(--secondary-color);
+        }
+        
+        .tool-btn.secondary:hover {
+            background: var(--secondary-hover);
+        }
+        
+        .editor-main {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            height: calc(100vh - 200px);
+        }
+        
+        .editor-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .editor-toolbar {
+            display: flex;
+            gap: 5px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+        
+        .toolbar-group {
+            display: flex;
+            gap: 5px;
+            border-right: 1px solid var(--border-color);
+            padding-right: 15px;
+            margin-right: 15px;
+        }
+        
+        .toolbar-group:last-child {
+            border-right: none;
+            margin-right: 0;
+        }
+        
+        .toolbar-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background: transparent;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+        
+        .toolbar-btn:hover {
+            background: var(--hover-color);
+        }
+        
+        .toolbar-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .editor-textarea {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: none;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: transparent;
+            color: var(--text-color);
+            resize: none;
+            outline: none;
+        }
+        
+        .editor-sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .word-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .word-label {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .format-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .format-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .format-option:hover {
+            background: var(--hover-color);
+        }
+        
+        .format-option input[type="radio"] {
+            margin: 0;
+        }
+        
+        .format-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .file-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .auto-save {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .auto-save.saving {
+            color: var(--primary-color);
+        }
+        
+        .auto-save.saved {
+            color: var(--success-color);
+        }
+        
+        @media (max-width: 768px) {
+            .editor-main {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .editor-sidebar {
+                order: -1;
+            }
+            
+            .editor-toolbar {
+                flex-wrap: wrap;
+            }
+            
+            .toolbar-group {
+                border-right: none;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Kembali ke Portfolio
+    </a>
+    
+    <div class="editor-container">
+        <div class="editor-header">
+            <h1 class="editor-title">Editor Makalah & Tugas</h1>
+            <div class="editor-tools">
+                <button class="tool-btn" onclick="saveDocument()">
+                    <i class="fas fa-save"></i> Simpan
+                </button>
+                <button class="tool-btn secondary" onclick="exportDocument()">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button class="tool-btn secondary" onclick="printDocument()">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+        </div>
+        
+        <div class="editor-main">
+            <div class="editor-content">
+                <div class="editor-toolbar">
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="formatText('bold')" title="Bold">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button class="toolbar-btn" onclick="formatText('italic')" title="Italic">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button class="toolbar-btn" onclick="formatText('underline')" title="Underline">
+                            <i class="fas fa-underline"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="formatText('justifyLeft')" title="Align Left">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                        <button class="toolbar-btn" onclick="formatText('justifyCenter')" title="Align Center">
+                            <i class="fas fa-align-center"></i>
+                        </button>
+                        <button class="toolbar-btn" onclick="formatText('justifyRight')" title="Align Right">
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                        <button class="toolbar-btn" onclick="formatText('justifyFull')" title="Justify">
+                            <i class="fas fa-align-justify"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="insertList('insertUnorderedList')" title="Bullet List">
+                            <i class="fas fa-list-ul"></i>
+                        </button>
+                        <button class="toolbar-btn" onclick="insertList('insertOrderedList')" title="Numbered List">
+                            <i class="fas fa-list-ol"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" onclick="clearFormatting()" title="Clear Formatting">
+                            <i class="fas fa-remove-format"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-textarea" id="editor" contenteditable="true" placeholder="Mulai mengetik makalah atau tugas Anda di sini..."></div>
+            </div>
+            
+            <div class="editor-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Statistik</h3>
+                    <div class="word-count" id="wordCount">0</div>
+                    <div class="word-label">Kata</div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Format Dokumen</h3>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <input type="radio" id="format-essay" name="document-format" value="essay" checked>
+                            <label for="format-essay">Makalah/Essay</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-report" name="document-format" value="report">
+                            <label for="format-report">Laporan</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-thesis" name="document-format" value="thesis">
+                            <label for="format-thesis">Skripsi/Tesis</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-notes" name="document-format" value="notes">
+                            <label for="format-notes">Catatan</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">File</h3>
+                    <div class="file-actions">
+                        <input type="file" id="fileInput" class="file-input" accept=".txt,.doc,.docx" onchange="loadFile(event)">
+                        <button class="tool-btn" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-folder-open"></i> Buka File
+                        </button>
+                        <button class="tool-btn secondary" onclick="newDocument()">
+                            <i class="fas fa-file"></i> Dokumen Baru
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="status-bar">
+        <div class="auto-save" id="autoSaveStatus">
+            <i class="fas fa-save"></i> Auto-save: Aktif
+        </div>
+        <div id="lastSaved">Terakhir disimpan: Belum pernah</div>
+    </div>
+    
+    <script>
+        // Editor functionality
+        const editor = document.getElementById('editor');
+        const wordCount = document.getElementById('wordCount');
+        const autoSaveStatus = document.getElementById('autoSaveStatus');
+        const lastSaved = document.getElementById('lastSaved');
+        
+        let autoSaveInterval;
+        let isTyping = false;
+        
+        // Initialize editor
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved content
+            const savedContent = localStorage.getItem('editorContent');
+            if (savedContent) {
+                editor.innerHTML = savedContent;
+                updateWordCount();
+            }
+            
+            // Set up auto-save
+            startAutoSave();
+            
+            // Set up word count
+            editor.addEventListener('input', () => {
+                updateWordCount();
+                isTyping = true;
+            });
+            
+            // Set up keyboard shortcuts
+            editor.addEventListener('keydown', handleKeyboardShortcuts);
+        });
+        
+        function updateWordCount() {
+            const text = editor.textContent || editor.innerText || '';
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            wordCount.textContent = words.length;
+        }
+        
+        function startAutoSave() {
+            autoSaveInterval = setInterval(() => {
+                if (isTyping) {
+                    saveToLocalStorage();
+                    isTyping = false;
+                }
+            }, 3000); // Auto-save every 3 seconds
+        }
+        
+        function saveToLocalStorage() {
+            const content = editor.innerHTML;
+            localStorage.setItem('editorContent', content);
+            localStorage.setItem('lastSaved', new Date().toLocaleString('id-ID'));
+            
+            // Update status
+            autoSaveStatus.innerHTML = '<i class="fas fa-check"></i> Tersimpan';
+            autoSaveStatus.className = 'auto-save saved';
+            lastSaved.textContent = `Terakhir disimpan: ${new Date().toLocaleString('id-ID')}`;
+            
+            setTimeout(() => {
+                autoSaveStatus.innerHTML = '<i class="fas fa-save"></i> Auto-save: Aktif';
+                autoSaveStatus.className = 'auto-save';
+            }, 2000);
+        }
+        
+        function saveDocument() {
+            saveToLocalStorage();
+            showNotification('Dokumen berhasil disimpan!', 'success');
+        }
+        
+        function exportDocument() {
+            const content = editor.innerHTML;
+            const textContent = editor.textContent || editor.innerText || '';
+            const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `makalah_${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function printDocument() {
+            const printWindow = window.open('', '_blank');
+            const content = editor.innerHTML;
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Print Document</title>
+                        <style>
+                            body { font-family: 'Poppins', sans-serif; line-height: 1.6; margin: 20px; }
+                            @media print { body { margin: 0; } }
+                        </style>
+                    </head>
+                    <body>${content}</body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+        
+        function formatText(command) {
+            document.execCommand(command, false, null);
+            editor.focus();
+        }
+        
+        function insertList(command) {
+            document.execCommand(command, false, null);
+            editor.focus();
+        }
+        
+        function clearFormatting() {
+            document.execCommand('removeFormat', false, null);
+            editor.focus();
+        }
+        
+        function newDocument() {
+            if (confirm('Apakah Anda yakin ingin membuat dokumen baru? Perubahan yang belum disimpan akan hilang.')) {
+                editor.innerHTML = '';
+                updateWordCount();
+                showNotification('Dokumen baru dibuat!', 'info');
+            }
+        }
+        
+        function loadFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    editor.innerHTML = e.target.result;
+                    updateWordCount();
+                    showNotification('File berhasil dimuat!', 'success');
+                };
+                reader.readAsText(file);
+            }
+        }
+        
+        function handleKeyboardShortcuts(e) {
+            // Ctrl+S untuk save
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveDocument();
+            }
+            
+            // Ctrl+N untuk dokumen baru
+            if (e.ctrlKey && e.key === 'n') {
+                e.preventDefault();
+                newDocument();
+            }
+            
+            // Ctrl+Z untuk undo
+            if (e.ctrlKey && e.key === 'z') {
+                e.preventDefault();
+                document.execCommand('undo', false, null);
+            }
+            
+            // Ctrl+Y untuk redo
+            if (e.ctrlKey && e.key === 'y') {
+                e.preventDefault();
+                document.execCommand('redo', false, null);
+            }
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            Object.assign(notification.style, {
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                padding: '15px 20px',
+                borderRadius: '8px',
+                color: 'white',
+                fontWeight: '500',
+                zIndex: '10000',
+                transform: 'translateX(100%)',
+                transition: 'transform 0.3s ease',
+                maxWidth: '300px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+            });
+            
+            const colors = {
+                success: '#10b981',
+                error: '#ef4444',
+                info: '#3b82f6'
+            };
+            notification.style.backgroundColor = colors[type] || colors.info;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Theme support
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+        
+        initTheme();
+    </script>
+</body>
+</html>

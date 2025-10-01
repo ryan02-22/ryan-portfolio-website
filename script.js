@@ -405,60 +405,14 @@ const debouncedScrollHandler = debounce(() => {
 
 window.addEventListener('scroll', debouncedScrollHandler);
 
-// Profile Photo Upload Functionality
+// Profile Photo Error Handling
 function initProfilePhoto() {
     const profileImg = document.getElementById('profile-img');
-    const profilePhoto = document.querySelector('.profile-photo');
     
     // Handle image load error
     profileImg.addEventListener('error', () => {
         console.log('Image failed to load, using placeholder');
         profileImg.src = 'https://via.placeholder.com/300x300/667eea/ffffff?text=Ryan';
-    });
-    
-    // Create file input
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-    fileInput.style.display = 'none';
-    document.body.appendChild(fileInput);
-    
-    // Add click event to profile photo
-    profilePhoto.addEventListener('click', () => {
-        fileInput.click();
-    });
-    
-    // Handle file selection
-    fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            // Validate file type
-            if (!file.type.startsWith('image/')) {
-                showNotification('Please select a valid image file', 'error');
-                return;
-            }
-            
-            // Validate file size (max 5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                showNotification('Image size should be less than 5MB', 'error');
-                return;
-            }
-            
-            // Create FileReader to preview image
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                profileImg.src = e.target.result;
-                
-                // Add loading animation
-                profileImg.style.opacity = '0';
-                setTimeout(() => {
-                    profileImg.style.opacity = '1';
-                }, 200);
-                
-                showNotification('Profile photo updated successfully!', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
     });
 }
 
