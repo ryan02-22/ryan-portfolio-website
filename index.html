@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Portfolio website Adha Adnan Febryan - Mahasiswa Teknik Informatika dengan keahlian dalam web development, mobile apps, dan artificial intelligence">
-    <meta name="keywords" content="portfolio, web developer, mobile developer, teknik informatika, adha adnan febryan, ryan">
+    <meta name="description" content="Portfolio website Adha Adnan Febryan - Mahasiswa Teknik Informatika dengan keahlian dalam web development, mobile apps, dan artificial intelligence. Lihat proyek, artikel, dan pengalaman saya.">
+    <meta name="keywords" content="portfolio, web developer, mobile developer, teknik informatika, adha adnan febryan, ryan, frontend, backend, javascript, html, css, react, vue, nodejs, python, php, mysql, responsive design, ui/ux">
     <meta name="author" content="Adha Adnan Febryan">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="geo.region" content="ID">
+    <meta name="geo.country" content="Indonesia">
+    <meta name="geo.placename" content="Bekasi">
+    <meta name="geo.position" content="-6.2383;106.9756">
+    <meta name="ICBM" content="-6.2383, 106.9756">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.com/">
+    
+    <!-- Alternate languages -->
+    <link rel="alternate" hreflang="id" href="https://your-domain.com/">
+    <link rel="alternate" hreflang="en" href="https://your-domain.com/en/">
+    <link rel="alternate" hreflang="x-default" href="https://your-domain.com/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -71,7 +89,7 @@
                 <a href="#skills" class="nav-link" role="menuitem">Skills</a>
                 <a href="#projects" class="nav-link" role="menuitem">Projects</a>
                 <a href="#schedule" class="nav-link" role="menuitem">Schedule</a>
-                <a href="editor.html" class="nav-link" role="menuitem">Editor</a>
+                <a href="articles.html" class="nav-link" role="menuitem">Artikel</a>
                 <a href="#contact" class="nav-link" role="menuitem">Contact</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -449,14 +467,14 @@
                     <div class="project-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="editor.html" class="project-link" target="_blank" aria-label="View Text Editor project"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/ryan73147/text-editor" class="project-link" target="_blank" aria-label="View Text Editor source code on GitHub"><i class="fab fa-github"></i></a>
+                                <a href="articles.html" class="project-link" target="_blank" aria-label="View CMS System project"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/ryan73147/cms-system" class="project-link" target="_blank" aria-label="View CMS System source code on GitHub"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>Text Editor</h3>
-                        <p>Editor teks online untuk mengetik makalah dan tugas</p>
+                        <h3>CMS System</h3>
+                        <p>Sistem manajemen konten untuk menulis dan menampilkan artikel/makalah</p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML</span>
                             <span class="tech-tag">CSS</span>
@@ -539,6 +557,15 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
     
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">

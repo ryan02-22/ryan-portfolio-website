@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel & Makalah - Portfolio Adha Adnan Febryan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .articles-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 20px;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        .articles-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .articles-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .articles-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .articles-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-write {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-write:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 16px;
+            width: 300px;
+            max-width: 100%;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .filter-select {
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .article-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .article-image {
+            height: 200px;
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .article-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .article-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-edit {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-edit:hover, .btn-delete:hover {
+            transform: scale(1.05);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .page-btn {
+            padding: 10px 15px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .articles-container {
+                padding: 80px 15px 20px;
+            }
+            
+            .articles-title {
+                font-size: 2rem;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-box {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 20px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Kembali ke Portfolio
+    </a>
+    
+    <div class="articles-container">
+        <div class="articles-header">
+            <h1 class="articles-title">Artikel & Makalah</h1>
+            <p class="articles-subtitle">Koleksi tulisan, makalah, dan tugas akademik</p>
+            
+            <div class="articles-actions">
+                <a href="write-article.html" class="btn-write">
+                    <i class="fas fa-plus"></i> Tulis Artikel Baru
+                </a>
+            </div>
+            
+            <div class="search-filter">
+                <input type="text" class="search-box" id="searchInput" placeholder="Cari artikel...">
+                <select class="filter-select" id="categoryFilter">
+                    <option value="">Semua Kategori</option>
+                    <option value="makalah">Makalah</option>
+                    <option value="tugas">Tugas</option>
+                    <option value="berita">Berita</option>
+                    <option value="tutorial">Tutorial</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="articles-grid" id="articlesGrid">
+            <!-- Articles will be loaded here -->
+        </div>
+        
+        <div class="pagination" id="pagination">
+            <!-- Pagination will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        // Sample articles data
+        let articles = [
+            {
+                id: 1,
+                title: "Pengenalan Web Development Modern",
+                excerpt: "Artikel ini membahas tentang perkembangan web development dari masa ke masa, mulai dari HTML statis hingga framework modern seperti React dan Vue.js.",
+                content: "Web development telah mengalami evolusi yang sangat pesat...",
+                category: "tutorial",
+                date: "2025-01-15",
+                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop",
+                author: "Adha Adnan Febryan"
+            },
+            {
+                id: 2,
+                title: "Analisis Perkembangan Teknologi AI",
+                excerpt: "Makalah ini menganalisis perkembangan teknologi Artificial Intelligence dan dampaknya terhadap kehidupan manusia di era digital.",
+                content: "Artificial Intelligence (AI) telah menjadi salah satu teknologi...",
+                category: "makalah",
+                date: "2025-01-10",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop",
+                author: "Adha Adnan Febryan"
+            },
+            {
+                id: 3,
+                title: "Implementasi Responsive Design",
+                excerpt: "Tugas kuliah tentang implementasi responsive design dalam pengembangan website modern untuk berbagai perangkat.",
+                content: "Responsive design merupakan pendekatan dalam web design...",
+                category: "tugas",
+                date: "2025-01-05",
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=200&fit=crop",
+                author: "Adha Adnan Febryan"
+            }
+        ];
+        
+        let filteredArticles = [...articles];
+        let currentPage = 1;
+        const articlesPerPage = 6;
+        
+        // Load articles from localStorage
+        function loadArticles() {
+            const savedArticles = localStorage.getItem('articles');
+            if (savedArticles) {
+                articles = JSON.parse(savedArticles);
+                filteredArticles = [...articles];
+            }
+            renderArticles();
+        }
+        
+        // Save articles to localStorage
+        function saveArticles() {
+            localStorage.setItem('articles', JSON.stringify(articles));
+        }
+        
+        // Render articles
+        function renderArticles() {
+            const grid = document.getElementById('articlesGrid');
+            const startIndex = (currentPage - 1) * articlesPerPage;
+            const endIndex = startIndex + articlesPerPage;
+            const pageArticles = filteredArticles.slice(startIndex, endIndex);
+            
+            if (pageArticles.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>Tidak ada artikel</h3>
+                        <p>Belum ada artikel yang ditulis. Klik "Tulis Artikel Baru" untuk memulai.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = pageArticles.map(article => `
+                <div class="article-card" onclick="viewArticle(${article.id})">
+                    <div class="article-image">
+                        <img src="${article.image}" alt="${article.title}" onerror="this.src='https://via.placeholder.com/400x200/667eea/ffffff?text=No+Image'">
+                        <div class="article-category">${getCategoryName(article.category)}</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <div class="article-date">
+                                <i class="fas fa-calendar"></i>
+                                ${formatDate(article.date)}
+                            </div>
+                            <div class="article-actions" onclick="event.stopPropagation()">
+                                <button class="article-btn btn-edit" onclick="editArticle(${article.id})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="article-btn btn-delete" onclick="deleteArticle(${article.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            renderPagination();
+        }
+        
+        // Render pagination
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})">
+                    <i class="fas fa-chevron-left"></i>
+                </button>`;
+            }
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">
+                    ${i}
+                </button>`;
+            }
+            
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">
+                    <i class="fas fa-chevron-right"></i>
+                </button>`;
+            }
+            
+            pagination.innerHTML = paginationHTML;
+        }
+        
+        // Change page
+        function changePage(page) {
+            currentPage = page;
+            renderArticles();
+        }
+        
+        // Search articles
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            
+            filteredArticles = articles.filter(article => {
+                const matchesSearch = article.title.toLowerCase().includes(searchTerm) || 
+                                    article.excerpt.toLowerCase().includes(searchTerm);
+                const matchesCategory = !category || article.category === category;
+                return matchesSearch && matchesCategory;
+            });
+            
+            currentPage = 1;
+            renderArticles();
+        }
+        
+        // Get category name
+        function getCategoryName(category) {
+            const categories = {
+                'makalah': 'Makalah',
+                'tugas': 'Tugas',
+                'berita': 'Berita',
+                'tutorial': 'Tutorial',
+                'lainnya': 'Lainnya'
+            };
+            return categories[category] || 'Lainnya';
+        }
+        
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+        
+        // View article
+        function viewArticle(id) {
+            window.location.href = `article-detail.html?id=${id}`;
+        }
+        
+        // Edit article
+        function editArticle(id) {
+            window.location.href = `write-article.html?id=${id}&edit=true`;
+        }
+        
+        // Delete article
+        function deleteArticle(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus artikel ini?')) {
+                articles = articles.filter(article => article.id !== id);
+                saveArticles();
+                loadArticles();
+                showNotification('Artikel berhasil dihapus!', 'success');
+            }
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            Object.assign(notification.style, {
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                padding: '15px 20px',
+                borderRadius: '8px',
+                color: 'white',
+                fontWeight: '500',
+                zIndex: '10000',
+                transform: 'translateX(100%)',
+                transition: 'transform 0.3s ease',
+                maxWidth: '300px',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+            });
+            
+            const colors = {
+                success: '#10b981',
+                error: '#ef4444',
+                info: '#3b82f6'
+            };
+            notification.style.backgroundColor = colors[type] || colors.info;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadArticles();
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', searchArticles);
+            document.getElementById('categoryFilter').addEventListener('change', searchArticles);
+        });
+        
+        // Theme support
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+        
+        initTheme();
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</body>
+</html>
