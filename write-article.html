@@ -11,6 +11,34 @@
         /* Reset untuk mencegah overlapping */
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Reset untuk mencegah duplikasi text */
+        *::before, *::after {
+            content: none;
+        }
+        
+        .form-input::before, .form-input::after,
+        .form-textarea::before, .form-textarea::after,
+        .form-select::before, .form-select::after,
+        .editor-content::before, .editor-content::after {
+            content: none !important;
+        }
+        
+        /* Reset khusus untuk form elements */
+        input, textarea, select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            color: inherit;
         }
         
         .write-container {
@@ -98,6 +126,10 @@
             position: relative;
             z-index: 1;
             overflow: hidden;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            resize: none;
         }
         
         .form-input:focus {
@@ -111,51 +143,19 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-overflow: ellipsis;
-            display: block;
-            position: relative;
-            z-index: 1;
         }
         
-        .form-input::-webkit-input-placeholder {
-            color: var(--text-light);
-            opacity: 1;
-            font-size: 16px;
-            line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .form-input::-moz-placeholder {
-            color: var(--text-light);
-            opacity: 1;
-            font-size: 16px;
-            line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .form-input:-ms-input-placeholder {
-            color: var(--text-light);
-            opacity: 1;
-            font-size: 16px;
-            line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        /* Mencegah text overlap */
-        .form-input, .form-textarea, .editor-content {
+        /* Mencegah text overlap dan duplikasi */
+        .form-input, .form-textarea, .form-select, .editor-content {
             text-overflow: ellipsis;
             overflow-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
+            white-space: normal;
+            text-decoration: none;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
         }
         
         /* Memastikan tidak ada floating elements */
@@ -198,6 +198,9 @@
             position: relative;
             z-index: 1;
             overflow: hidden;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         
         .form-textarea::placeholder {
@@ -205,17 +208,28 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
-            white-space: normal;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-overflow: ellipsis;
-            display: block;
-            position: relative;
-            z-index: 1;
         }
         
         .form-select {
             cursor: pointer;
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            line-height: 1.5;
+            box-sizing: border-box;
+            display: block;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         
         .form-row {
@@ -329,6 +343,15 @@
             float: none;
             margin-top: 0;
             margin-bottom: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            resize: none;
+            white-space: normal;
+            text-decoration: none;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
         }
         
         .editor-content:focus {
@@ -337,10 +360,18 @@
         }
         
         .editor-content:empty:before {
-            content: attr(data-placeholder);
+            content: "Mulai menulis konten artikel Anda di sini...";
             color: var(--text-light);
             font-style: italic;
             pointer-events: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 1;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .form-actions {
@@ -465,44 +496,21 @@
                 display: inline-flex;
             }
             
-            .form-input {
+            .form-input, .form-textarea, .form-select {
                 font-size: 16px; /* Prevent zoom on iOS */
                 padding: 12px;
-                width: 100%;
-                box-sizing: border-box;
-                display: block;
-                position: relative;
-                z-index: 1;
-                overflow: hidden;
             }
             
-            .form-input::placeholder {
-                font-size: 16px;
-                line-height: 1.5;
-                white-space: normal;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                text-overflow: ellipsis;
-            }
-            
-            .form-textarea {
+            .editor-content {
                 font-size: 16px; /* Prevent zoom on iOS */
-                padding: 12px;
-                width: 100%;
-                box-sizing: border-box;
-                display: block;
-                position: relative;
-                z-index: 1;
-                overflow: hidden;
+                padding: 15px;
             }
             
-            .form-textarea::placeholder {
+            .editor-content:empty:before {
+                top: 15px;
+                left: 15px;
+                right: 15px;
                 font-size: 16px;
-                line-height: 1.5;
-                white-space: normal;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                text-overflow: ellipsis;
             }
             
             .editor-content {
