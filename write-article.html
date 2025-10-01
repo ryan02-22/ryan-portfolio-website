@@ -55,6 +55,19 @@
             position: relative;
             width: 100%;
             clear: both;
+            display: block;
+            overflow: hidden;
+        }
+        
+        .form-group::before {
+            content: "";
+            display: table;
+        }
+        
+        .form-group::after {
+            content: "";
+            display: table;
+            clear: both;
         }
         
         .form-label {
@@ -62,6 +75,11 @@
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--text-primary);
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+            clear: both;
         }
         
         .form-input {
@@ -76,6 +94,10 @@
             transition: all 0.3s ease;
             line-height: 1.5;
             box-sizing: border-box;
+            display: block;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
         }
         
         .form-input:focus {
@@ -91,6 +113,41 @@
             line-height: 1.5;
             white-space: normal;
             word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-overflow: ellipsis;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-input::-webkit-input-placeholder {
+            color: var(--text-light);
+            opacity: 1;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .form-input::-moz-placeholder {
+            color: var(--text-light);
+            opacity: 1;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .form-input:-ms-input-placeholder {
+            color: var(--text-light);
+            opacity: 1;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         /* Mencegah text overlap */
@@ -108,9 +165,53 @@
             clear: both;
         }
         
+        /* Reset untuk mencegah text overlap */
+        .form-input, .form-textarea, .form-select {
+            float: none;
+            clear: both;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Memastikan container tidak collapse */
+        .write-form::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
         .form-textarea {
             min-height: 200px;
             resize: vertical;
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            line-height: 1.5;
+            box-sizing: border-box;
+            display: block;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .form-textarea::placeholder {
+            color: var(--text-light);
+            opacity: 1;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            text-overflow: ellipsis;
+            display: block;
+            position: relative;
+            z-index: 1;
         }
         
         .form-select {
@@ -121,6 +222,15 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            clear: both;
+        }
+        
+        .form-row::after {
+            content: "";
+            display: table;
+            clear: both;
         }
         
         .image-upload {
@@ -358,6 +468,41 @@
             .form-input {
                 font-size: 16px; /* Prevent zoom on iOS */
                 padding: 12px;
+                width: 100%;
+                box-sizing: border-box;
+                display: block;
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+            }
+            
+            .form-input::placeholder {
+                font-size: 16px;
+                line-height: 1.5;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                text-overflow: ellipsis;
+            }
+            
+            .form-textarea {
+                font-size: 16px; /* Prevent zoom on iOS */
+                padding: 12px;
+                width: 100%;
+                box-sizing: border-box;
+                display: block;
+                position: relative;
+                z-index: 1;
+                overflow: hidden;
+            }
+            
+            .form-textarea::placeholder {
+                font-size: 16px;
+                line-height: 1.5;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                text-overflow: ellipsis;
             }
             
             .editor-content {
