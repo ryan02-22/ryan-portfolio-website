@@ -8,18 +8,61 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset untuk mencegah overlapping */
+        /* Reset radikal untuk mengatasi semua masalah */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         
-        /* Reset sederhana untuk form elements */
+        /* Reset total untuk form elements */
         input, textarea, select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            color: inherit;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
+        }
+        
+        /* Reset placeholder secara total */
+        input::placeholder, textarea::placeholder {
+            color: inherit;
+            opacity: 0.5;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
+        }
+        
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: inherit;
+            opacity: 0.5;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
+        }
+        
+        input::-moz-placeholder, textarea::-moz-placeholder {
+            color: inherit;
+            opacity: 0.5;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
+        }
+        
+        input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            color: inherit;
+            opacity: 0.5;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: inherit;
         }
         
         .write-container {
@@ -107,6 +150,9 @@
             -moz-appearance: none;
             appearance: none;
             resize: none;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: var(--text-primary);
         }
         
         .form-input:focus {
@@ -120,6 +166,9 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: var(--text-light);
         }
         
         /* Mencegah text overlap dan duplikasi */
@@ -166,6 +215,9 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: var(--text-primary);
         }
         
         .form-textarea::placeholder {
@@ -173,6 +225,9 @@
             opacity: 1;
             font-size: 16px;
             line-height: 1.5;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: var(--text-light);
         }
         
         .form-select {
@@ -191,6 +246,9 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: var(--text-primary);
         }
         
         .form-row {
@@ -310,7 +368,7 @@
             text-decoration: none;
             text-shadow: none;
             -webkit-text-stroke: none;
-            -webkit-text-fill-color: inherit;
+            -webkit-text-fill-color: var(--text-primary);
             position: relative;
         }
         
@@ -329,6 +387,9 @@
             left: 20px;
             right: 20px;
             z-index: 1;
+            text-shadow: none;
+            -webkit-text-stroke: none;
+            -webkit-text-fill-color: var(--text-light);
         }
         
         .form-actions {
