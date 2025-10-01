@@ -62,12 +62,21 @@
             font-size: 16px;
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
+            line-height: 1.5;
+            box-sizing: border-box;
         }
         
         .form-input:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: var(--text-light);
+            opacity: 1;
+            font-size: 16px;
+            line-height: 1.5;
         }
         
         .form-textarea {
@@ -116,6 +125,10 @@
             gap: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            padding: 15px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
         
         .toolbar-btn {
@@ -127,6 +140,11 @@
             cursor: pointer;
             transition: all 0.2s ease;
             font-size: 14px;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .toolbar-btn:hover {
@@ -152,11 +170,21 @@
             line-height: 1.6;
             outline: none;
             transition: all 0.3s ease;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         
         .editor-content:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .editor-content:empty:before {
+            content: attr(data-placeholder);
+            color: var(--text-light);
+            font-style: italic;
+            pointer-events: none;
         }
         
         .form-actions {
@@ -262,6 +290,46 @@
                 margin-bottom: 20px;
                 display: inline-block;
             }
+            
+            .editor-toolbar {
+                padding: 10px;
+                gap: 5px;
+            }
+            
+            .toolbar-btn {
+                min-width: 35px;
+                height: 35px;
+                padding: 5px 8px;
+                font-size: 12px;
+            }
+            
+            .form-input {
+                font-size: 16px; /* Prevent zoom on iOS */
+                padding: 12px;
+            }
+            
+            .editor-content {
+                min-height: 300px;
+                padding: 15px;
+                font-size: 16px; /* Prevent zoom on iOS */
+            }
+            
+            .form-group {
+                margin-bottom: 25px;
+            }
+            
+            .form-label {
+                margin-bottom: 8px;
+                font-size: 14px;
+            }
+            
+            .write-header {
+                margin-bottom: 30px;
+            }
+            
+            .write-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -334,7 +402,7 @@
                         <i class="fas fa-link"></i>
                     </button>
                 </div>
-                <div class="editor-content" id="articleContent" contenteditable="true" placeholder="Mulai menulis konten artikel Anda di sini..."></div>
+                <div class="editor-content" id="articleContent" contenteditable="true" data-placeholder="Mulai menulis konten artikel Anda di sini..."></div>
                 <div class="word-count" id="wordCount">0 kata</div>
             </div>
             
