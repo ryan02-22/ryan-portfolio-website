@@ -216,11 +216,62 @@
             outline: none;
             transition: all 0.3s ease;
             width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
         }
         
         .editor-content:focus {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Konten yang dimasukkan user di dalam editor */
+        .editor-content img,
+        .editor-content video,
+        .editor-content iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 12px 0;
+        }
+
+        .editor-content table {
+            width: 100%;
+            border-collapse: collapse;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .editor-content th,
+        .editor-content td {
+            border: 1px solid var(--border-color);
+            padding: 8px 10px;
+        }
+
+        .editor-content h1,
+        .editor-content h2,
+        .editor-content h3,
+        .editor-content h4,
+        .editor-content h5,
+        .editor-content h6 {
+            margin: 18px 0 10px;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        .editor-content p,
+        .editor-content ul,
+        .editor-content ol,
+        .editor-content blockquote,
+        .editor-content pre {
+            margin: 12px 0;
+        }
+
+        .editor-content ul,
+        .editor-content ol {
+            padding-left: 24px;
         }
         
         .form-actions {
