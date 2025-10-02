@@ -6,9 +6,9 @@ Sitemap: https://your-domain.com/sitemap.xml
 
 # Allow all search engines to crawl
 Allow: /index.html
-Allow: /articles.html
-Allow: /write-article.html
-Allow: /article-detail.html
+Disallow: /articles.html
+Disallow: /write-article.html
+Disallow: /article-detail.html
 Allow: /projects/
 Allow: /styles.css
 Allow: /script.js

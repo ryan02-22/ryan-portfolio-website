@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Tidak Ditemukan - 404</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .not-found {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .not-found .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            padding: 40px 32px;
+            max-width: 560px;
+        }
+        .not-found h1 { font-size: 3rem; margin-bottom: 10px; }
+        .not-found p { color: var(--text-secondary); margin-bottom: 24px; }
+        .btn { padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+        .btn-primary { background: var(--gradient-primary); color: #fff; }
+    </style>
+    <script>
+      // Redirect ringan untuk URL lama artikel
+      (function(){
+        var path = location.pathname || '';
+        if (/articles\.html|write-article\.html|article-detail\.html/.test(path)) {
+          location.replace('/index.html');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="not-found">
+      <div class="card">
+        <h1>404</h1>
+        <p>Maaf, halaman yang Anda cari tidak ditemukan.</p>
+        <a class="btn btn-primary" href="/index.html">Kembali ke Beranda</a>
+      </div>
+    </div>
+  </body>
+</html>
+
+

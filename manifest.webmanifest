@@ -1,0 +1,13 @@
+{
+  "name": "Portfolio - Adha Adnan Febryan",
+  "short_name": "Portfolio",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "icons": [
+    {"src": "/ryan.jpg", "sizes": "192x192", "type": "image/jpeg"}
+  ]
+}
+
+
