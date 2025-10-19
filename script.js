@@ -7,6 +7,152 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
+// Page Transition System
+class PageTransition {
+    constructor() {
+        this.overlay = document.getElementById('pageTransitionOverlay');
+        this.pageContent = document.querySelector('.page-content');
+        this.isTransitioning = false;
+        this.init();
+    }
+
+    init() {
+        // Add transition listeners to navigation links
+        this.addNavigationListeners();
+        
+        // Add transition listeners to internal links
+        this.addInternalLinkListeners();
+        
+        // Add transition listeners to buttons
+        this.addButtonListeners();
+    }
+
+    addNavigationListeners() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    this.transitionToSection(href);
+                }
+            });
+        });
+    }
+
+    addInternalLinkListeners() {
+        const internalLinks = document.querySelectorAll('a[href^="#"]');
+        internalLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    this.transitionToSection(href);
+                }
+            });
+        });
+    }
+
+    addButtonListeners() {
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const href = button.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    this.transitionToSection(href);
+                }
+            });
+        });
+    }
+
+    async transitionToSection(targetId) {
+        if (this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        
+        try {
+            // Start transition
+            await this.startTransition();
+            
+            // Scroll to target
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 70; // Account for navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Wait for scroll to complete
+            await this.waitForScroll();
+            
+            // End transition
+            await this.endTransition();
+            
+        } catch (error) {
+            console.error('Transition error:', error);
+            this.endTransition();
+        } finally {
+            this.isTransitioning = false;
+        }
+    }
+
+    async startTransition() {
+        return new Promise((resolve) => {
+            // Add transitioning class to content
+            this.pageContent.classList.add('transitioning');
+            
+            // Show overlay with fade-in animation
+            this.overlay.classList.add('active', 'fade-in');
+            
+            // Remove fade-in class after animation
+            setTimeout(() => {
+                this.overlay.classList.remove('fade-in');
+                resolve();
+            }, 400);
+        });
+    }
+
+    async endTransition() {
+        return new Promise((resolve) => {
+            // Add fade-out animation
+            this.overlay.classList.add('fade-out');
+            
+            // Remove transitioning class from content
+            this.pageContent.classList.remove('transitioning');
+            
+            // Hide overlay after animation
+            setTimeout(() => {
+                this.overlay.classList.remove('active', 'fade-out');
+                resolve();
+            }, 300);
+        });
+    }
+
+    async waitForScroll() {
+        return new Promise((resolve) => {
+            let scrollTimeout;
+            
+            const checkScroll = () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    resolve();
+                }, 100);
+            };
+            
+            window.addEventListener('scroll', checkScroll, { once: true });
+            
+            // Fallback timeout
+            setTimeout(resolve, 1000);
+        });
+    }
+}
+
+// Initialize page transition system
+const pageTransition = new PageTransition();
+
 // Mobile Navigation Toggle
 navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
@@ -26,15 +172,13 @@ function updateNavbarBackground() {
     const navbar = document.querySelector('.navbar');
     const isDark = document.body.getAttribute('data-theme') === 'dark';
     
-    if (window.scrollY > 50) {
-        navbar.style.background = isDark 
-            ? 'rgba(26, 32, 44, 0.98)' 
-            : 'rgba(255, 255, 255, 0.98)';
-    } else {
-        navbar.style.background = isDark 
-            ? 'rgba(26, 32, 44, 0.95)' 
-            : 'rgba(255, 255, 255, 0.95)';
-    }
+    // Use CSS variables for consistent theming
+    navbar.style.background = 'var(--bg-primary)';
+    navbar.style.borderBottomColor = 'var(--border-color)';
+    navbar.style.boxShadow = 'var(--shadow-light)';
+    
+    // Add backdrop blur for modern look
+    navbar.style.backdropFilter = 'blur(10px)';
 }
 
 // Ultra-simple Dark Mode Toggle - NO DELAYS
@@ -426,24 +570,6 @@ window.addEventListener('load', () => {
         } else {
             heroTitle.innerHTML = originalText;
         }
-    }
-});
-
-// Parallax Effect for Hero Section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const floatingElements = document.querySelectorAll('.floating-element');
-    
-    if (!prefersReducedMotion) {
-        if (hero) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-        
-        floatingElements.forEach((element, index) => {
-            const speed = 0.5 + (index * 0.1);
-            element.style.transform = `translateY(${scrolled * speed}px)`;
-        });
     }
 });
 
