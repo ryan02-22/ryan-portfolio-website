@@ -66,53 +66,139 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Theme switching optimization */
+/* Theme switching optimization - NO TRANSITIONS */
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
-    transition: background-color 0.2s ease, color 0.2s ease;
+    position: relative;
+    overflow-x: hidden;
+    /* Removed all transitions for instant theme switching */
 }
 
-/* Disable transitions during theme switching for immediate response */
-body.theme-switching * {
-    transition: none !important;
+/* Animated Background & Atmosphere */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(240, 147, 251, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    animation: backgroundShift 20s ease-in-out infinite;
+    z-index: -2;
 }
 
-/* Fast theme transitions for specific elements */
-.navbar {
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+[data-theme="dark"] body::before {
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(240, 147, 251, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
-.theme-toggle {
-    transition: background-color 0.2s ease, transform 0.2s ease;
+@keyframes backgroundShift {
+    0%, 100% { 
+        transform: translateX(0) translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateX(-10px) translateY(-5px) scale(1.02);
+        opacity: 0.9;
+    }
+    50% { 
+        transform: translateX(5px) translateY(-10px) scale(0.98);
+        opacity: 0.7;
+    }
+    75% { 
+        transform: translateX(-5px) translateY(5px) scale(1.01);
+        opacity: 0.85;
+    }
 }
 
-.btn {
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+/* Minimal Light Particles */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px, 100px 100px;
+    animation: floatingParticles 25s linear infinite;
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Optimize theme switching for key elements */
-.section-title,
-.hero-title,
-.hero-subtitle,
-.hero-description,
-.about-text p,
-.contact-info h3,
-.contact-info p {
-    transition: color 0.2s ease;
+[data-theme="dark"] body::after {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 30% 70%, rgba(240, 147, 251, 0.15) 1px, transparent 1px),
+        radial-gradient(circle at 70% 30%, rgba(102, 126, 234, 0.15) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(118, 75, 162, 0.1) 1px, transparent 1px);
 }
 
-.skill-category,
-.project-card,
-.service-card,
-.testimonial-card,
-.schedule-table-container,
-.schedule-info,
-.contact-form {
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+@keyframes floatingParticles {
+    0% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-5px) translateX(2px); }
+    50% { transform: translateY(-2px) translateX(-2px); }
+    75% { transform: translateY(-8px) translateX(1px); }
+    100% { transform: translateY(0) translateX(0); }
 }
+
+/* Performance Optimization for Background */
+body::before,
+body::after {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Disable background animations on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none !important;
+        opacity: 0.3 !important;
+    }
+}
+
+/* Mobile optimization - reduce background complexity */
+@media (max-width: 768px) {
+    body::before {
+        background: 
+            radial-gradient(circle at 30% 30%, rgba(102, 126, 234, 0.08) 0%, transparent 40%),
+            radial-gradient(circle at 70% 70%, rgba(118, 75, 162, 0.08) 0%, transparent 40%),
+            linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    }
+    
+    body::after {
+        background-image: 
+            radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 300px 300px, 400px 400px;
+    }
+    
+    [data-theme="dark"] body::after {
+        background-image: 
+            radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 1px, transparent 1px),
+            radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 1px, transparent 1px);
+    }
+}
+
+/* Removed all theme-switching CSS - using simple approach */
 
 .container {
     max-width: 1200px;
@@ -120,7 +206,7 @@ body.theme-switching * {
     padding: 0 20px;
 }
 
-/* Navigation */
+/* Remove all transitions for instant theme switching */
 .navbar {
     position: fixed;
     top: 0;
@@ -128,7 +214,6 @@ body.theme-switching * {
     background: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
-    transition: all 0.3s ease;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -241,7 +326,7 @@ body.theme-switching * {
     padding: 10px;
     border-radius: 50%;
     background: var(--bg-secondary);
-    transition: all 0.3s ease;
+    /* Removed transition for instant response */
 }
 
 .theme-toggle:hover {
@@ -262,6 +347,40 @@ body.theme-switching * {
 
 [data-theme="dark"] .hero {
     background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+}
+
+/* Hero atmospheric overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(240, 147, 251, 0.08) 0%, transparent 70%);
+    animation: heroAtmosphere 15s ease-in-out infinite;
+    z-index: 1;
+}
+
+[data-theme="dark"] .hero::before {
+    background: 
+        radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(240, 147, 251, 0.15) 0%, transparent 70%);
+}
+
+@keyframes heroAtmosphere {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: scale(1.1) rotate(2deg);
+        opacity: 0.8;
+    }
 }
 
 .hero-container {
@@ -616,11 +735,50 @@ section {
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow-light);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
 }
 
+.skill-category.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skill category hover effects */
 .skill-category:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+}
+
+.skill-category:hover h3::after {
+    width: 100%;
+    background: var(--gradient-secondary);
+}
+
+/* Skill item hover effects */
+.skill-item:hover span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.skill-item:hover .skill-progress {
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive animations */
+@media (max-width: 768px) {
+    .skill-category {
+        padding: 1.5rem;
+    }
+    
+    .skill-item {
+        margin-bottom: 1rem;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.1rem;
+    }
 }
 
 .skill-category h3 {
@@ -628,10 +786,34 @@ section {
     margin-bottom: 1.5rem;
     font-size: 1.3rem;
     font-weight: 600;
+    position: relative;
+}
+
+.skill-category h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.8s ease;
+}
+
+.skill-category.animate h3::after {
+    width: 100%;
 }
 
 .skill-item {
     margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.skill-item.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .skill-item span {
@@ -639,6 +821,7 @@ section {
     margin-bottom: 0.5rem;
     color: var(--text-secondary);
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .skill-bar {
@@ -647,6 +830,7 @@ section {
     background: var(--bg-tertiary);
     border-radius: 4px;
     overflow: hidden;
+    position: relative;
 }
 
 .skill-progress {
@@ -654,7 +838,63 @@ section {
     background: var(--gradient-primary);
     border-radius: 4px;
     width: 0;
-    transition: width 2s ease;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Loading state for skill bars */
+.skill-progress.loading {
+    background: linear-gradient(90deg, 
+        var(--bg-tertiary) 0%, 
+        var(--primary-color) 50%, 
+        var(--bg-tertiary) 100%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Skill percentage display */
+.skill-item {
+    position: relative;
+}
+
+.skill-item span::after {
+    content: attr(data-percentage);
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover span::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Projects Section */

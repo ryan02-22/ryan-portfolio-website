@@ -37,34 +37,25 @@ function updateNavbarBackground() {
     }
 }
 
-// Dark Mode Toggle
+// Ultra-simple Dark Mode Toggle - NO DELAYS
 themeToggle.addEventListener('click', () => {
-    // Add theme-switching class to disable transitions
-    document.body.classList.add('theme-switching');
+    // Get current theme
+    const currentTheme = document.body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
-    // Change theme
-    document.body.setAttribute('data-theme', 
-        document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-    );
+    // Change theme immediately
+    document.body.setAttribute('data-theme', newTheme);
     
-    // Force reflow to ensure immediate visual update
-    document.body.offsetHeight;
-    
-    // Update theme icon immediately
-    themeToggle.innerHTML = document.body.getAttribute('data-theme') === 'dark' 
+    // Update icon immediately
+    themeToggle.innerHTML = newTheme === 'dark' 
         ? '<i class="fas fa-sun"></i>' 
         : '<i class="fas fa-moon"></i>';
     
-    // Update navbar background immediately
+    // Update navbar immediately
     updateNavbarBackground();
     
-    // Save theme preference
-    localStorage.setItem('theme', document.body.getAttribute('data-theme'));
-    
-    // Remove theme-switching class after a short delay to re-enable transitions
-    setTimeout(() => {
-        document.body.classList.remove('theme-switching');
-    }, 50);
+    // Save preference
+    localStorage.setItem('theme', newTheme);
 });
 
 // Load saved theme
@@ -192,21 +183,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 });
 
-// Skills Progress Animation
+// Skills Progress Animation with Intersection Observer
 const skillBars = document.querySelectorAll('.skill-progress');
-const skillObserver = new IntersectionObserver((entries) => {
+const skillItems = document.querySelectorAll('.skill-item');
+const skillCategories = document.querySelectorAll('.skill-category');
+
+// Create intersection observer for skills section
+const skillsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const progressBar = entry.target;
-            const width = progressBar.getAttribute('data-width');
-            progressBar.style.width = width;
+            const skillsSection = entry.target;
+            
+            // Animate skill categories with staggered delay
+            skillCategories.forEach((category, categoryIndex) => {
+                setTimeout(() => {
+                    category.classList.add('animate');
+                    
+                    // Animate skill items within this category
+                    const itemsInCategory = category.querySelectorAll('.skill-item');
+                    itemsInCategory.forEach((item, itemIndex) => {
+                        setTimeout(() => {
+                            item.classList.add('animate');
+                            
+                            // Animate the progress bar
+                            const progressBar = item.querySelector('.skill-progress');
+                            if (progressBar) {
+                                const targetWidth = progressBar.getAttribute('data-width');
+                                progressBar.style.setProperty('--target-width', targetWidth);
+                                
+                                setTimeout(() => {
+                                    progressBar.classList.add('animate');
+                                }, 200);
+                            }
+                        }, itemIndex * 150);
+                    });
+                }, categoryIndex * 300);
+            });
+            
+            // Unobserve after animation to prevent re-triggering
+            skillsObserver.unobserve(skillsSection);
         }
     });
-}, { threshold: 0.5 });
-
-skillBars.forEach(bar => {
-    skillObserver.observe(bar);
+}, { 
+    threshold: 0.3,
+    rootMargin: '0px 0px -100px 0px'
 });
+
+// Observe the skills section
+const skillsSection = document.querySelector('.skills');
+if (skillsSection) {
+    skillsObserver.observe(skillsSection);
+}
 
 // Project Filter
 filterBtns.forEach(btn => {
