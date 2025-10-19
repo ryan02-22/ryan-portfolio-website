@@ -21,6 +21,22 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
+// Function to update navbar background based on current theme and scroll position
+function updateNavbarBackground() {
+    const navbar = document.querySelector('.navbar');
+    const isDark = document.body.getAttribute('data-theme') === 'dark';
+    
+    if (window.scrollY > 50) {
+        navbar.style.background = isDark 
+            ? 'rgba(26, 32, 44, 0.98)' 
+            : 'rgba(255, 255, 255, 0.98)';
+    } else {
+        navbar.style.background = isDark 
+            ? 'rgba(26, 32, 44, 0.95)' 
+            : 'rgba(255, 255, 255, 0.95)';
+    }
+}
+
 // Dark Mode Toggle
 themeToggle.addEventListener('click', () => {
     document.body.setAttribute('data-theme', 
@@ -32,6 +48,9 @@ themeToggle.addEventListener('click', () => {
         ? '<i class="fas fa-sun"></i>' 
         : '<i class="fas fa-moon"></i>';
     
+    // Update navbar background immediately
+    updateNavbarBackground();
+    
     // Save theme preference
     localStorage.setItem('theme', document.body.getAttribute('data-theme'));
 });
@@ -42,6 +61,9 @@ document.body.setAttribute('data-theme', savedTheme);
 themeToggle.innerHTML = savedTheme === 'dark' 
     ? '<i class="fas fa-sun"></i>' 
     : '<i class="fas fa-moon"></i>';
+
+// Update navbar background on page load
+updateNavbarBackground();
 
 // Smooth Scrolling for Navigation Links (honor reduced motion)
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -58,20 +80,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar Background on Scroll + Active Nav
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            navbar.style.background = 'rgba(26, 32, 44, 0.98)';
-        }
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            navbar.style.background = 'rgba(26, 32, 44, 0.95)';
-        }
-    }
+// Combined scroll handler for navbar, active nav, and parallax
+function handleScroll() {
+    // Update navbar background
+    updateNavbarBackground();
 
     // Highlight active nav link
     const sections = document.querySelectorAll('main section');
@@ -86,7 +98,26 @@ window.addEventListener('scroll', () => {
         const isActive = link.getAttribute('href') === currentId;
         link.setAttribute('aria-current', isActive ? 'true' : 'false');
     });
-});
+
+    // Parallax effect (only if reduced motion is not preferred)
+    if (!prefersReducedMotion) {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        const floatingElements = document.querySelectorAll('.floating-element');
+        
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+        
+        floatingElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.1);
+            element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    }
+}
+
+// Navbar Background on Scroll + Active Nav
+window.addEventListener('scroll', handleScroll);
 
 // Intersection Observer for Animations (skip when reduced motion)
 const observerOptions = {
@@ -399,7 +430,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Performance optimization: Debounce scroll events
+// Performance optimization: Debounce function (not used for scroll anymore)
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -410,41 +441,6 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
-}
-
-// Apply debouncing to scroll events
-const debouncedScrollHandler = debounce(() => {
-    // Navbar background change
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            navbar.style.background = 'rgba(26, 32, 44, 0.98)';
-        }
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            navbar.style.background = 'rgba(26, 32, 44, 0.95)';
-        }
-    }
-    
-    // Parallax effect
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const floatingElements = document.querySelectorAll('.floating-element');
-    
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-    
-    floatingElements.forEach((element, index) => {
-        const speed = 0.5 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-}, 10);
-
-if (!prefersReducedMotion) {
-    window.addEventListener('scroll', debouncedScrollHandler);
 }
 
 // Profile Photo Error Handling
