@@ -66,12 +66,52 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Theme switching optimization */
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-primary);
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Disable transitions during theme switching for immediate response */
+body.theme-switching * {
+    transition: none !important;
+}
+
+/* Fast theme transitions for specific elements */
+.navbar {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn {
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Optimize theme switching for key elements */
+.section-title,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.about-text p,
+.contact-info h3,
+.contact-info p {
+    transition: color 0.2s ease;
+}
+
+.skill-category,
+.project-card,
+.service-card,
+.testimonial-card,
+.schedule-table-container,
+.schedule-info,
+.contact-form {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .container {

@@ -39,11 +39,18 @@ function updateNavbarBackground() {
 
 // Dark Mode Toggle
 themeToggle.addEventListener('click', () => {
+    // Add theme-switching class to disable transitions
+    document.body.classList.add('theme-switching');
+    
+    // Change theme
     document.body.setAttribute('data-theme', 
         document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
     );
     
-    // Update theme icon
+    // Force reflow to ensure immediate visual update
+    document.body.offsetHeight;
+    
+    // Update theme icon immediately
     themeToggle.innerHTML = document.body.getAttribute('data-theme') === 'dark' 
         ? '<i class="fas fa-sun"></i>' 
         : '<i class="fas fa-moon"></i>';
@@ -53,6 +60,11 @@ themeToggle.addEventListener('click', () => {
     
     // Save theme preference
     localStorage.setItem('theme', document.body.getAttribute('data-theme'));
+    
+    // Remove theme-switching class after a short delay to re-enable transitions
+    setTimeout(() => {
+        document.body.classList.remove('theme-switching');
+    }, 50);
 });
 
 // Load saved theme
