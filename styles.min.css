@@ -330,7 +330,12 @@ body::after {
     }
 }
 
-/* Removed all theme-switching CSS - using simple approach */
+/* Disable all transitions during theme switching */
+body.theme-switching,
+body.theme-switching * {
+    transition: none !important;
+    animation: none !important;
+}
 
 .container {
     max-width: 1200px;
@@ -1467,10 +1472,17 @@ section.visible {
         text-align: center;
         gap: 2rem;
     }
+    
+    .hero-text {
+        text-align: center;
+        width: 100%;
+    }
 
     .hero-title {
         font-size: 2.5rem;
         line-height: 1.1;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode hero title - mobile optimization */
@@ -1483,6 +1495,8 @@ section.visible {
 
     .hero-subtitle {
         font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode subtitle - mobile optimization */
@@ -1492,6 +1506,8 @@ section.visible {
 
     .hero-description {
         font-size: 1rem;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode description - mobile optimization */
@@ -1557,10 +1573,17 @@ section.visible {
         padding-top: 60px;
         min-height: 100vh;
     }
+    
+    .hero-text {
+        text-align: center;
+        width: 100%;
+    }
 
     .hero-title {
         font-size: 1.8rem;
         line-height: 1.2;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode hero title - small mobile */
@@ -1573,6 +1596,8 @@ section.visible {
 
     .hero-subtitle {
         font-size: 1rem;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode subtitle - small mobile */
@@ -1584,6 +1609,8 @@ section.visible {
     .hero-description {
         font-size: 0.9rem;
         line-height: 1.6;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode description - small mobile */
@@ -1694,8 +1721,15 @@ section.visible {
 
 /* Extra small devices (phones in portrait) */
 @media (max-width: 360px) {
+    .hero-text {
+        text-align: center;
+        width: 100%;
+    }
+    
     .hero-title {
         font-size: 1.6rem;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode hero title - extra small mobile */
@@ -1713,6 +1747,8 @@ section.visible {
 
     .hero-subtitle {
         font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode subtitle - extra small mobile */
@@ -1724,6 +1760,8 @@ section.visible {
 
     .hero-description {
         font-size: 0.85rem;
+        text-align: center;
+        width: 100%;
     }
     
     /* Dark mode description - extra small mobile */

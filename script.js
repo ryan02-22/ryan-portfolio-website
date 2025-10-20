@@ -35,8 +35,11 @@ function updateNavbarBackground() {
     navbar.style.backdropFilter = 'blur(10px)';
 }
 
-// Ultra-simple Dark Mode Toggle - NO DELAYS
+// Ultra-fast Dark Mode Toggle - Instant switching
 themeToggle.addEventListener('click', () => {
+    // Add class to disable transitions
+    document.body.classList.add('theme-switching');
+    
     // Get current theme
     const currentTheme = document.body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -54,6 +57,11 @@ themeToggle.addEventListener('click', () => {
     
     // Save preference
     localStorage.setItem('theme', newTheme);
+    
+    // Remove class after a tiny delay to re-enable transitions
+    setTimeout(() => {
+        document.body.classList.remove('theme-switching');
+    }, 50);
 });
 
 // Load saved theme
