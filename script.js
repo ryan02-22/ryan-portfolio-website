@@ -7,152 +7,6 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
-// Page Transition System
-class PageTransition {
-    constructor() {
-        this.overlay = document.getElementById('pageTransitionOverlay');
-        this.pageContent = document.querySelector('.page-content');
-        this.isTransitioning = false;
-        this.init();
-    }
-
-    init() {
-        // Add transition listeners to navigation links
-        this.addNavigationListeners();
-        
-        // Add transition listeners to internal links
-        this.addInternalLinkListeners();
-        
-        // Add transition listeners to buttons
-        this.addButtonListeners();
-    }
-
-    addNavigationListeners() {
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    this.transitionToSection(href);
-                }
-            });
-        });
-    }
-
-    addInternalLinkListeners() {
-        const internalLinks = document.querySelectorAll('a[href^="#"]');
-        internalLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                if (href && href !== '#') {
-                    e.preventDefault();
-                    this.transitionToSection(href);
-                }
-            });
-        });
-    }
-
-    addButtonListeners() {
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const href = button.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    this.transitionToSection(href);
-                }
-            });
-        });
-    }
-
-    async transitionToSection(targetId) {
-        if (this.isTransitioning) return;
-        
-        this.isTransitioning = true;
-        
-        try {
-            // Start transition
-            await this.startTransition();
-            
-            // Scroll to target
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 70; // Account for navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-            
-            // Wait for scroll to complete
-            await this.waitForScroll();
-            
-            // End transition
-            await this.endTransition();
-            
-        } catch (error) {
-            console.error('Transition error:', error);
-            this.endTransition();
-        } finally {
-            this.isTransitioning = false;
-        }
-    }
-
-    async startTransition() {
-        return new Promise((resolve) => {
-            // Add transitioning class to content
-            this.pageContent.classList.add('transitioning');
-            
-            // Show overlay with fade-in animation
-            this.overlay.classList.add('active', 'fade-in');
-            
-            // Remove fade-in class after animation
-            setTimeout(() => {
-                this.overlay.classList.remove('fade-in');
-                resolve();
-            }, 400);
-        });
-    }
-
-    async endTransition() {
-        return new Promise((resolve) => {
-            // Add fade-out animation
-            this.overlay.classList.add('fade-out');
-            
-            // Remove transitioning class from content
-            this.pageContent.classList.remove('transitioning');
-            
-            // Hide overlay after animation
-            setTimeout(() => {
-                this.overlay.classList.remove('active', 'fade-out');
-                resolve();
-            }, 300);
-        });
-    }
-
-    async waitForScroll() {
-        return new Promise((resolve) => {
-            let scrollTimeout;
-            
-            const checkScroll = () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    resolve();
-                }, 100);
-            };
-            
-            window.addEventListener('scroll', checkScroll, { once: true });
-            
-            // Fallback timeout
-            setTimeout(resolve, 1000);
-        });
-    }
-}
-
-// Initialize page transition system
-const pageTransition = new PageTransition();
-
 // Mobile Navigation Toggle
 navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
@@ -279,14 +133,21 @@ if (!prefersReducedMotion) {
             }
         });
     }, observerOptions);
-    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+    
+    // Observe all animated elements
+    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, section, .section-title').forEach(el => {
         observer.observe(el);
     });
 }
 
-// Add animation classes to elements
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait a bit for DOM to be fully loaded
+    console.log('Portfolio website loaded successfully!');
+    
+    // Initialize profile photo functionality
+    initProfilePhoto();
+    
+    // Add animation classes to elements
     setTimeout(() => {
         // Hero section
         const heroText = document.querySelector('.hero-text');
@@ -324,8 +185,75 @@ document.addEventListener('DOMContentLoaded', () => {
             if (contactInfo) contactInfo.classList.add('slide-in-left');
             if (contactForm) contactForm.classList.add('slide-in-right');
         }
+        
+        // Schedule section
+        const scheduleTable = document.querySelector('.schedule-table-container');
+        const scheduleInfo = document.querySelector('.schedule-info');
+        if (!prefersReducedMotion) {
+            if (scheduleTable) scheduleTable.classList.add('slide-in-left');
+            if (scheduleInfo) scheduleInfo.classList.add('slide-in-right');
+        }
+        
+        // Add animation classes to section titles
+        document.querySelectorAll('.section-title').forEach((title, index) => {
+            title.classList.add('fade-in');
+            title.style.animationDelay = `${index * 0.2}s`;
+        });
+        
+        // Add animation classes to stats
+        document.querySelectorAll('.stat, .academic-stat').forEach((stat, index) => {
+            stat.classList.add('scale-in');
+            stat.style.animationDelay = `${index * 0.1}s`;
+        });
     }, 100);
+
+    // Lazy-load all non-hero images
+    const images = document.querySelectorAll('img:not(#profile-img)');
+    images.forEach(img => {
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+            img.setAttribute('decoding', 'async');
+        }
+    });
+
+    // Back to top
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) backToTop.classList.add('show');
+            else backToTop.classList.remove('show');
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+    }
 });
+
+// Counter animation function
+function animateCounter(element, targetValue, duration) {
+    const startValue = 0;
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Use easeOutCubic for smooth animation
+        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOutCubic);
+        
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = targetValue;
+            element.classList.add('animate');
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
 
 // Skills Progress Animation with Intersection Observer
 const skillBars = document.querySelectorAll('.skill-progress');
@@ -341,25 +269,26 @@ const skillsObserver = new IntersectionObserver((entries) => {
             // Animate skill categories with staggered delay
             skillCategories.forEach((category, categoryIndex) => {
                 setTimeout(() => {
-                    category.classList.add('animate');
+                    category.classList.add('visible');
                     
                     // Animate skill items within this category
                     const itemsInCategory = category.querySelectorAll('.skill-item');
                     itemsInCategory.forEach((item, itemIndex) => {
                         setTimeout(() => {
-                            item.classList.add('animate');
-                            
-                            // Animate the progress bar
+                            // Animate the progress bar and percentage
                             const progressBar = item.querySelector('.skill-progress');
-                            if (progressBar) {
+                            const percentageElement = item.querySelector('.skill-percentage');
+                            
+                            if (progressBar && percentageElement) {
                                 const targetWidth = progressBar.getAttribute('data-width');
-                                progressBar.style.setProperty('--target-width', targetWidth);
                                 
-                                setTimeout(() => {
-                                    progressBar.classList.add('animate');
-                                }, 200);
+                                // Animate progress bar
+                                progressBar.style.width = targetWidth + '%';
+                                
+                                // Animate percentage counter
+                                animateCounter(percentageElement, parseInt(targetWidth), 2500);
                             }
-                        }, itemIndex * 150);
+                        }, itemIndex * 200);
                     });
                 }, categoryIndex * 300);
             });
