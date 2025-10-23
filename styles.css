@@ -70,6 +70,8 @@ body {
     background-color: var(--bg-primary);
     position: relative;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 /* Animated Background & Atmosphere */
@@ -515,6 +517,7 @@ body.theme-switching * {
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .hero-content {
@@ -533,6 +536,8 @@ body.theme-switching * {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Dark mode text - enhanced visibility */
@@ -1457,6 +1462,12 @@ section.visible {
     /* Container adjustments */
     .container {
         padding: 0 16px;
+        overflow-x: hidden;
+    }
+    
+    .hero-container {
+        padding: 0 16px;
+        overflow-x: hidden;
     }
     
     /* Navigation */
@@ -1521,13 +1532,14 @@ section.visible {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
-        padding: 20px 0;
+        padding: 20px 10px;
     }
     
     .hero-text {
         text-align: center;
         width: 100%;
         order: 2;
+        padding: 0 10px;
     }
     
     .hero-image {
@@ -1536,15 +1548,22 @@ section.visible {
 
     .hero-title {
         font-size: 2.2rem;
-        line-height: 1.2;
+        line-height: 1.3;
         text-align: center;
         width: 100%;
         margin-bottom: 1rem;
+        /* Fix gradient text for better mobile visibility */
+        color: var(--primary-color);
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
     }
     
     /* Dark mode hero title - mobile optimization */
     [data-theme="dark"] .hero-title {
         font-size: 2.2rem;
+        color: #ffffff;
         text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7), 
                      0 0 15px rgba(102, 126, 234, 0.4),
                      0 0 30px rgba(102, 126, 234, 0.2);
@@ -1735,6 +1754,12 @@ section.visible {
     /* Container */
     .container {
         padding: 0 12px;
+        overflow-x: hidden;
+    }
+    
+    .hero-container {
+        padding: 0 12px;
+        overflow-x: hidden;
     }
     
     /* Navigation */
@@ -1781,15 +1806,23 @@ section.visible {
 
     .hero-title {
         font-size: 1.75rem;
-        line-height: 1.2;
+        line-height: 1.3;
         text-align: center;
         width: 100%;
         margin-bottom: 0.8rem;
+        padding: 0 5px;
+        /* Solid color for better mobile readability */
+        color: var(--primary-color);
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
     }
     
     /* Dark mode hero title - small mobile */
     [data-theme="dark"] .hero-title {
         font-size: 1.75rem;
+        color: #ffffff;
         text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8), 
                      0 0 12px rgba(102, 126, 234, 0.5),
                      0 0 25px rgba(102, 126, 234, 0.25);
@@ -2014,6 +2047,12 @@ section.visible {
     /* Container */
     .container {
         padding: 0 10px;
+        overflow-x: hidden;
+    }
+    
+    .hero-container {
+        padding: 0 10px;
+        overflow-x: hidden;
     }
     
     /* Navigation */
@@ -2061,13 +2100,21 @@ section.visible {
         font-size: 1.5rem;
         text-align: center;
         width: 100%;
-        line-height: 1.3;
+        line-height: 1.4;
         margin-bottom: 0.6rem;
+        padding: 0 5px;
+        /* Solid color for maximum readability */
+        color: var(--primary-color);
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
     }
     
     /* Dark mode hero title - extra small mobile */
     [data-theme="dark"] .hero-title {
         font-size: 1.5rem;
+        color: #ffffff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 
                      0 0 10px rgba(102, 126, 234, 0.5),
                      0 0 20px rgba(102, 126, 234, 0.3);
