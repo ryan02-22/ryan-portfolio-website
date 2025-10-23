@@ -343,6 +343,8 @@ body.theme-switching * {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Remove all transitions for instant theme switching */
@@ -1538,14 +1540,18 @@ section.visible {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
-        padding: 20px 10px;
+        padding: 20px 5px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .hero-text {
         text-align: center;
         width: 100%;
         order: 2;
-        padding: 0 10px;
+        padding: 0 15px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .hero-image {
@@ -1558,12 +1564,13 @@ section.visible {
         text-align: center;
         width: 100%;
         margin-bottom: 1rem;
+        padding: 0 15px !important;
         /* Fix gradient text for better mobile visibility */
-        color: var(--primary-color);
-        background: none;
-        -webkit-background-clip: unset;
-        -webkit-text-fill-color: unset;
-        background-clip: unset;
+        color: var(--primary-color) !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: unset !important;
+        background-clip: unset !important;
     }
     
     /* Dark mode hero title - mobile optimization */
@@ -1735,6 +1742,13 @@ section.visible {
     /* Fine-tune for mid-sized devices */
     .hero-title {
         font-size: 2rem;
+        /* Remove gradient for mobile */
+        color: var(--primary-color) !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: unset !important;
+        background-clip: unset !important;
+        padding: 0 10px;
     }
     
     .hero-subtitle {
@@ -1825,13 +1839,13 @@ section.visible {
         text-align: center;
         width: 100%;
         margin-bottom: 0.8rem;
-        padding: 0 5px;
+        padding: 0 12px !important;
         /* Solid color for better mobile readability */
-        color: var(--primary-color);
-        background: none;
-        -webkit-background-clip: unset;
-        -webkit-text-fill-color: unset;
-        background-clip: unset;
+        color: var(--primary-color) !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: unset !important;
+        background-clip: unset !important;
     }
     
     /* Dark mode hero title - small mobile */
@@ -2129,13 +2143,13 @@ section.visible {
         width: 100%;
         line-height: 1.4;
         margin-bottom: 0.6rem;
-        padding: 0 5px;
+        padding: 0 12px !important;
         /* Solid color for maximum readability */
-        color: var(--primary-color);
-        background: none;
-        -webkit-background-clip: unset;
-        -webkit-text-fill-color: unset;
-        background-clip: unset;
+        color: var(--primary-color) !important;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: unset !important;
+        background-clip: unset !important;
     }
     
     /* Dark mode hero title - extra small mobile */
