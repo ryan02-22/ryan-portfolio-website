@@ -808,6 +808,8 @@ section.visible {
     color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.8;
+    text-align: justify;
+    padding: 0 5px;
 }
 
 .about-stats {
@@ -1191,12 +1193,14 @@ section.visible {
     padding: 2rem;
     box-shadow: var(--shadow-light);
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
+    table-layout: auto;
 }
 
 .schedule-table thead {
@@ -1217,6 +1221,8 @@ section.visible {
     border-bottom: 1px solid var(--border-color);
     color: var(--text-primary);
     transition: background-color 0.3s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .schedule-table tbody tr:hover {
@@ -1680,20 +1686,29 @@ section.visible {
     }
 
     .schedule-table-container {
-        padding: 1rem;
+        padding: 0.8rem;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        margin: 0 -16px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .schedule-table {
         font-size: 0.85rem;
-        min-width: 500px;
+        min-width: 100%;
+        width: 100%;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.8rem 0.5rem;
+        padding: 0.8rem 0.6rem;
         font-size: 0.85rem;
+        text-align: left;
+    }
+    
+    .schedule-table td:first-child {
+        padding-left: 0.8rem;
     }
 
     /* Contact Section */
@@ -1902,6 +1917,8 @@ section.visible {
     .about-text p {
         font-size: 1rem;
         margin-bottom: 1.5rem;
+        padding: 0 8px;
+        text-align: justify;
     }
     
     .about-stats {
@@ -1990,17 +2007,27 @@ section.visible {
 
     .schedule-table {
         font-size: 0.8rem;
-        min-width: 450px;
+        min-width: 100%;
+        width: 100%;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.7rem 0.4rem;
+        padding: 0.7rem 0.5rem;
         font-size: 0.8rem;
+        text-align: left;
     }
     
     .schedule-table th {
         font-size: 0.85rem;
+    }
+    
+    .schedule-table td:first-child {
+        padding-left: 0.7rem;
+    }
+    
+    .schedule-table-container {
+        padding: 0.8rem 0.5rem;
     }
 
     /* Contact Section */
@@ -2189,6 +2216,8 @@ section.visible {
     .about-text p {
         font-size: 0.95rem;
         line-height: 1.7;
+        padding: 0 8px;
+        text-align: justify;
     }
     
     .stat {
@@ -2293,22 +2322,31 @@ section.visible {
     }
     
     .schedule-table-container {
-        padding: 0.8rem;
+        padding: 0.6rem 0.4rem;
+        margin: 0 -10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .schedule-table {
         font-size: 0.75rem;
-        min-width: 400px;
+        min-width: 100%;
+        width: 100%;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.6rem 0.3rem;
+        padding: 0.6rem 0.4rem;
         font-size: 0.75rem;
+        text-align: left;
     }
     
     .schedule-table th {
         font-size: 0.8rem;
+    }
+    
+    .schedule-table td:first-child {
+        padding-left: 0.6rem;
     }
     
     .schedule-info {
