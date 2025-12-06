@@ -718,26 +718,46 @@ function fixScheduleTableMobile() {
     if (!scheduleTable || !scheduleContainer) return;
     
     const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    const isExtraSmall = window.innerWidth <= 360;
     
     if (isMobile) {
         // Force table to render properly
         scheduleTable.style.display = 'table';
         scheduleTable.style.tableLayout = 'auto';
         scheduleTable.style.width = 'auto';
-        scheduleTable.style.minWidth = '920px';
+        
+        // Set min-width based on screen size (converted to rem: 16px = 1rem)
+        if (isExtraSmall) {
+            scheduleTable.style.minWidth = '34rem'; // 544px
+        } else if (isSmallMobile) {
+            scheduleTable.style.minWidth = '36rem'; // 576px
+        } else {
+            scheduleTable.style.minWidth = '40rem'; // 640px
+        }
         
         // Ensure container allows scrolling
         scheduleContainer.style.overflowX = 'auto';
         scheduleContainer.style.webkitOverflowScrolling = 'touch';
+        scheduleContainer.style.width = '100%';
+        scheduleContainer.style.maxWidth = '100%';
         
         // Fix all cells to prevent text truncation
         const firstCells = scheduleTable.querySelectorAll('td:first-child, th:first-child');
         firstCells.forEach(cell => {
-            cell.style.minWidth = '450px';
+            // Set min-width based on screen size (in rem)
+            if (isExtraSmall) {
+                cell.style.minWidth = '16.5rem'; // 264px
+            } else if (isSmallMobile) {
+                cell.style.minWidth = '18rem'; // 288px
+            } else {
+                cell.style.minWidth = '20rem'; // 320px
+            }
             cell.style.whiteSpace = 'normal';
             cell.style.wordWrap = 'break-word';
             cell.style.overflowWrap = 'anywhere';
             cell.style.wordBreak = 'break-word';
+            cell.style.hyphens = 'auto';
         });
         
         // Add scroll hint for mobile
@@ -747,12 +767,12 @@ function fixScheduleTableMobile() {
             scrollHint.textContent = '← Geser untuk melihat lebih banyak →';
             scrollHint.style.cssText = `
                 text-align: center;
-                padding: 8px;
+                padding: 0.5rem;
                 font-size: 0.85rem;
                 color: var(--text-secondary);
                 background: var(--bg-secondary);
-                border-radius: 8px;
-                margin-bottom: 10px;
+                border-radius: 0.5rem;
+                margin-bottom: 0.625rem;
                 display: block;
             `;
             scheduleContainer.insertBefore(scrollHint, scheduleTable);
