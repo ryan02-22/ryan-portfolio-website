@@ -1961,22 +1961,25 @@ section.visible {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .schedule-table th:first-child,
 .schedule-table td:first-child {
-    width: 50%;
+    min-width: 250px;
+    width: auto;
 }
 
 .schedule-table th:nth-child(2),
 .schedule-table td:nth-child(2) {
-    width: 20%;
+    min-width: 100px;
+    width: auto;
 }
 
 .schedule-table th:last-child,
 .schedule-table td:last-child {
-    width: 30%;
+    min-width: 120px;
+    width: auto;
 }
 
 .schedule-table thead {
@@ -2013,6 +2016,12 @@ section.visible {
     hyphens: auto;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
+}
+
+.schedule-table td:first-child {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .schedule-table tbody tr:hover {
@@ -3136,50 +3145,71 @@ section.visible {
     }
 
     .schedule-table {
-        font-size: 0.9rem;
-        min-width: 650px !important;
-        width: 100%;
-        table-layout: fixed;
+        font-size: 0.9rem !important;
+        min-width: 850px !important;
+        width: auto !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        border-collapse: separate !important;
+        border-spacing: 0;
+        margin: 0;
+        display: table !important;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 1rem 0.8rem;
+        padding: 1rem 0.9rem !important;
         font-size: 0.9rem;
         text-align: left;
         word-wrap: break-word;
         overflow-wrap: break-word;
         vertical-align: top;
+        box-sizing: border-box;
+        display: table-cell !important;
+    }
+    
+    .schedule-table th {
+        font-weight: 600 !important;
+        white-space: nowrap !important;
     }
     
     .schedule-table td:first-child,
     .schedule-table th:first-child {
-        width: 60% !important;
-        min-width: 280px !important;
+        width: auto !important;
+        min-width: 400px !important;
         max-width: none !important;
         white-space: normal !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
         hyphens: auto;
         -webkit-hyphens: auto;
-        padding-right: 1rem;
+        padding-right: 1.2rem !important;
+        padding-left: 1rem !important;
         text-align: left !important;
     }
     
     .schedule-table td:nth-child(2),
     .schedule-table th:nth-child(2) {
-        width: 18% !important;
-        white-space: nowrap;
-        min-width: 85px !important;
-        text-align: center;
+        width: auto !important;
+        white-space: nowrap !important;
+        min-width: 110px !important;
+        max-width: none !important;
+        text-align: center !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
     }
     
     .schedule-table td:last-child,
     .schedule-table th:last-child {
-        width: 22% !important;
-        white-space: nowrap;
-        min-width: 95px !important;
-        text-align: center;
+        width: auto !important;
+        white-space: nowrap !important;
+        min-width: 135px !important;
+        max-width: none !important;
+        text-align: center !important;
+        padding-left: 0.75rem !important;
+        padding-right: 1rem !important;
     }
     
     .schedule-info {
@@ -3599,63 +3629,72 @@ section.visible {
         font-size: 0.85rem;
     }
 
+    .schedule-table-container {
+        padding: 1rem 0.75rem;
+        overflow-x: auto !important;
+    }
+    
     .schedule-table {
         font-size: 0.85rem;
-        min-width: 550px !important;
-        width: 100%;
-        table-layout: fixed;
+        min-width: 800px !important;
+        width: auto !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        border-collapse: separate !important;
+        border-spacing: 0;
+        display: table !important;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.85rem 0.6rem;
+        padding: 0.85rem 0.7rem !important;
         font-size: 0.85rem;
         text-align: left;
         vertical-align: top;
+        box-sizing: border-box;
     }
     
     .schedule-table th {
         font-size: 0.9rem;
         font-weight: 600;
+        padding: 0.95rem 0.7rem !important;
     }
     
     .schedule-table td:first-child,
     .schedule-table th:first-child {
-        width: 60% !important;
-        min-width: 250px !important;
+        width: auto !important;
+        min-width: 380px !important;
         max-width: none !important;
         white-space: normal !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
         hyphens: auto;
         -webkit-hyphens: auto;
-        padding-right: 0.8rem;
+        padding-right: 1rem !important;
+        padding-left: 0.9rem !important;
         text-align: left !important;
     }
     
     .schedule-table td:nth-child(2),
     .schedule-table th:nth-child(2) {
-        width: 18% !important;
+        width: auto !important;
         white-space: nowrap;
-        min-width: 80px !important;
+        min-width: 90px !important;
         text-align: center;
+        padding-left: 0.7rem !important;
+        padding-right: 0.7rem !important;
     }
     
     .schedule-table td:last-child,
     .schedule-table th:last-child {
-        width: 22% !important;
+        width: auto !important;
         white-space: nowrap;
-        min-width: 90px !important;
+        min-width: 110px !important;
         text-align: center;
-    }
-    
-    .schedule-table {
-        min-width: 600px !important;
-    }
-    
-    .schedule-table-container {
-        padding: 1rem 0.75rem;
-        overflow-x: auto !important;
+        padding-left: 0.7rem !important;
+        padding-right: 0.9rem !important;
     }
 
     /* Contact Section */
@@ -4021,56 +4060,68 @@ section.visible {
     }
 
     .schedule-table {
-        font-size: 0.85rem;
-        min-width: 550px !important;
-        width: 100%;
-        table-layout: fixed;
+        font-size: 0.85rem !important;
+        min-width: 780px !important;
+        width: auto !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        border-collapse: separate !important;
+        border-spacing: 0;
+        display: table !important;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.85rem 0.65rem;
+        padding: 0.9rem 0.7rem !important;
         font-size: 0.85rem;
         text-align: left;
         word-wrap: break-word;
         overflow-wrap: break-word;
         vertical-align: top;
+        box-sizing: border-box;
     }
     
     .schedule-table th {
         font-size: 0.9rem;
-        padding: 0.95rem 0.65rem;
+        padding: 0.95rem 0.7rem !important;
         font-weight: 600;
     }
     
     .schedule-table td:first-child,
     .schedule-table th:first-child {
-        width: 60% !important;
-        min-width: 230px !important;
+        width: auto !important;
+        min-width: 370px !important;
         max-width: none !important;
         white-space: normal !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
         hyphens: auto;
         -webkit-hyphens: auto;
-        padding-right: 0.7rem;
+        padding-right: 1rem !important;
+        padding-left: 0.9rem !important;
         text-align: left !important;
     }
     
     .schedule-table td:nth-child(2),
     .schedule-table th:nth-child(2) {
-        width: 18% !important;
+        width: auto !important;
         white-space: nowrap;
-        min-width: 75px !important;
+        min-width: 95px !important;
         text-align: center;
+        padding-left: 0.7rem !important;
+        padding-right: 0.7rem !important;
     }
     
     .schedule-table td:last-child,
     .schedule-table th:last-child {
-        width: 22% !important;
+        width: auto !important;
         white-space: nowrap;
-        min-width: 85px !important;
+        min-width: 115px !important;
         text-align: center;
+        padding-left: 0.7rem !important;
+        padding-right: 0.9rem !important;
     }
     
     .schedule-info {
