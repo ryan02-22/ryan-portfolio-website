@@ -60,6 +60,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, a {
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 /* Theme switching optimization - NO TRANSITIONS */
@@ -72,6 +77,8 @@ body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
+    margin: 0;
+    padding: 0;
 }
 
 /* Animated Background & Atmosphere */
@@ -722,6 +729,10 @@ body.theme-switching * {
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     animation: floatBadge 6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .design-badge i {
@@ -751,6 +762,9 @@ body.theme-switching * {
     gap: 5rem;
     align-items: center;
     max-width: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-title {
@@ -879,12 +893,17 @@ body.theme-switching * {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
 }
 
 .image-container {
     position: relative;
     width: 320px;
     height: 320px;
+    max-width: 90vw;
+    max-height: 90vw;
     background: var(--gradient-primary);
     border-radius: 50%;
     display: flex;
@@ -894,6 +913,7 @@ body.theme-switching * {
     overflow: hidden;
     margin: 0 auto;
     animation: containerGlow 4s ease-in-out infinite;
+    box-sizing: border-box;
 }
 
 @keyframes containerGlow {
@@ -2074,28 +2094,56 @@ section.visible {
     }
 }
 
-/* Tablet and smaller devices (768px and below) */
+/* Fix for all mobile devices - prevent overflow */
 @media (max-width: 768px) {
+    /* Global mobile fixes */
+    * {
+        max-width: 100%;
+    }
+    
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+    
+    html {
+        overflow-x: hidden;
+        width: 100%;
+    }
     /* Hide complex animations on mobile for performance */
     .hero .design-accent-1,
     .hero .design-accent-2,
     .hero .design-accent-3 {
-        display: none;
+        display: none !important;
     }
     
     .hero::after {
-        display: none;
+        display: none !important;
     }
     
     /* Container adjustments */
     .container {
         padding: 0 16px;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .hero-container {
         padding: 0 16px;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure hero doesn't overflow */
+    .hero {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
     }
     
     /* Navigation */
@@ -2172,6 +2220,8 @@ section.visible {
     padding: 0;
     max-width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 2;
 }
     
     .hero-image {
@@ -2185,6 +2235,8 @@ section.visible {
         width: 100%;
         margin-bottom: 1.25rem;
         padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         /* Fix gradient text for better mobile visibility */
         color: var(--primary-color) !important;
         background: none !important;
@@ -2192,11 +2244,14 @@ section.visible {
         -webkit-text-fill-color: unset !important;
         background-clip: unset !important;
         animation: none !important;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .hero-subtitle::after {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         animation: expandUnderlineCenter 1s ease-out 0.5s both;
     }
     
@@ -2211,6 +2266,13 @@ section.visible {
             opacity: 1;
             left: 50%;
         }
+    }
+    
+    /* Fix any absolute positioned elements that might overflow */
+    .hero-subtitle {
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     /* Dark mode hero title - mobile optimization */
@@ -2241,6 +2303,17 @@ section.visible {
         margin-bottom: 2rem;
         padding: 0;
         max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .design-badge {
+        font-size: 0.8rem;
+        padding: 0.45rem 1rem;
+        margin-bottom: 1.25rem;
+        max-width: calc(100% - 32px);
+        word-wrap: break-word;
     }
     
     /* Dark mode description - mobile optimization */
@@ -2257,11 +2330,16 @@ section.visible {
     .image-container {
         width: 220px;
         height: 220px;
+        max-width: 80vw;
+        max-height: 80vw;
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25), 0 0 0 15px rgba(102, 126, 234, 0.04);
     }
     
     .profile-photo {
         width: 200px;
         height: 200px;
+        max-width: calc(80vw - 20px);
+        max-height: calc(80vw - 20px);
     }
     
     /* Sections */
@@ -2417,17 +2495,30 @@ section.visible {
     }
 }
 
-/* Small mobile devices (480px and below) */
+    /* Small mobile devices (480px and below) */
 @media (max-width: 480px) {
+    /* Prevent all overflow */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
     /* Container */
     .container {
         padding: 0 12px;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .hero-container {
         padding: 0 12px;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     /* Navigation */
@@ -2545,11 +2636,16 @@ section.visible {
     .image-container {
         width: 180px;
         height: 180px;
+        max-width: 75vw;
+        max-height: 75vw;
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2), 0 0 0 12px rgba(102, 126, 234, 0.03);
     }
 
     .profile-photo {
         width: 160px;
         height: 160px;
+        max-width: calc(75vw - 20px);
+        max-height: calc(75vw - 20px);
     }
 
     .floating-elements {
@@ -2724,15 +2820,28 @@ section.visible {
 
 /* Extra small mobile devices (360px and below) */
 @media (max-width: 360px) {
+    /* Prevent all overflow */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
     /* Container */
     .container {
         padding: 0 10px;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .hero-container {
         padding: 0 10px;
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     /* Navigation */
