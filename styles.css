@@ -794,9 +794,11 @@ body.theme-switching * {
     background-clip: text;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    hyphens: auto;
     letter-spacing: -0.03em;
     animation: gradientShift 8s ease infinite;
     position: relative;
+    max-width: 100%;
 }
 
 @keyframes gradientShift {
@@ -885,7 +887,10 @@ body.theme-switching * {
     color: var(--text-light);
     margin-bottom: 2.5rem;
     line-height: 1.85;
-    max-width: 90%;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 /* Dark mode description - maximum visibility */
@@ -1089,6 +1094,11 @@ section.visible {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 .section-title.visible {
@@ -1173,6 +1183,10 @@ section.visible {
     line-height: 1.9;
     text-align: justify;
     padding: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
 }
 
 .about-stats {
@@ -1703,6 +1717,8 @@ section.visible {
     font-weight: 600;
     font-size: 1.4rem;
     letter-spacing: -0.01em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .project-content p {
@@ -1711,6 +1727,8 @@ section.visible {
     line-height: 1.7;
     font-size: 1rem;
     flex-grow: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .project-tech {
@@ -1764,7 +1782,17 @@ section.visible {
     width: 100%;
     border-collapse: collapse;
     font-size: 1rem;
-    table-layout: auto;
+    table-layout: fixed;
+}
+
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+    width: 65%;
+}
+
+.schedule-table th:last-child,
+.schedule-table td:last-child {
+    width: 35%;
 }
 
 .schedule-table thead {
@@ -1798,6 +1826,9 @@ section.visible {
     transition: background-color 0.3s ease;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
 }
 
 .schedule-table tbody tr:hover {
@@ -2371,6 +2402,9 @@ section.visible {
     .section-title {
         font-size: 2.25rem;
         margin-bottom: 3rem;
+        padding: 0 1rem;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     /* About Section */
@@ -2381,7 +2415,14 @@ section.visible {
 
     .about-stats {
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.8rem;
+        gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .stat {
+        padding: 1.5rem 1rem;
+        box-sizing: border-box;
     }
     
     .stat {
@@ -2424,12 +2465,22 @@ section.visible {
     /* Schedule Section */
     .schedule-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .academic-stats {
         grid-template-columns: repeat(3, 1fr);
-        gap: 0.8rem;
+        gap: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .academic-stat {
+        padding: 1.25rem 0.75rem;
+        box-sizing: border-box;
     }
 
     .schedule-table-container {
@@ -2437,23 +2488,50 @@ section.visible {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .schedule-table {
-        font-size: 0.85rem;
-        min-width: 100%;
+        font-size: 0.9rem;
         width: 100%;
+        table-layout: fixed;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.8rem 0.6rem;
-        font-size: 0.85rem;
+        padding: 1rem 0.8rem;
+        font-size: 0.9rem;
         text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
+    .schedule-table th:first-child,
     .schedule-table td:first-child {
-        padding-left: 0.8rem;
+        width: 65%;
+    }
+    
+    .schedule-table th:last-child,
+    .schedule-table td:last-child {
+        width: 35%;
+    }
+    
+    .schedule-info {
+        padding: 1.75rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .academic-stats {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .academic-stat {
+        padding: 1.25rem 0.75rem;
     }
 
     /* Contact Section */
@@ -2685,6 +2763,9 @@ section.visible {
     .section-title {
         font-size: 1.65rem;
         margin-bottom: 1.5rem;
+        padding: 0 1rem;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     /* About Section */
@@ -3001,6 +3082,9 @@ section.visible {
     .section-title {
         font-size: 1.5rem;
         margin-bottom: 1.2rem;
+        padding: 0 1rem;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     /* About Section */
@@ -3113,53 +3197,83 @@ section.visible {
     }
     
     .schedule-table-container {
-        padding: 0.6rem 0.4rem;
-        margin: 0 -10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 1.25rem 1rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .schedule-table {
-        font-size: 0.75rem;
-        min-width: 100%;
+        font-size: 0.85rem;
         width: 100%;
+        table-layout: fixed;
     }
 
     .schedule-table th,
     .schedule-table td {
-        padding: 0.6rem 0.4rem;
-        font-size: 0.75rem;
+        padding: 0.9rem 0.7rem;
+        font-size: 0.85rem;
         text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .schedule-table th {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        padding: 1rem 0.7rem;
     }
     
+    .schedule-table th:first-child,
     .schedule-table td:first-child {
-        padding-left: 0.6rem;
+        width: 65%;
+    }
+    
+    .schedule-table th:last-child,
+    .schedule-table td:last-child {
+        width: 35%;
     }
     
     .schedule-info {
-        padding: 1.5rem;
+        padding: 1.5rem 1.25rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .schedule-info h3 {
-        font-size: 1.1rem;
-        margin-bottom: 1.2rem;
+        font-size: 1.15rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .academic-stats {
+        gap: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .academic-stat {
+        padding: 1.2rem 0.8rem;
+    }
+    
+    .current-semester {
+        padding: 1.25rem;
     }
     
     .current-semester h4 {
-        font-size: 1rem;
+        font-size: 1.05rem;
+        margin-bottom: 0.6rem;
     }
     
     .current-semester p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
     }
     
     .semester-badge {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.9rem;
     }
     
     /* Contact Section */
