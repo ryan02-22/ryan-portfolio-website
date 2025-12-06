@@ -2486,25 +2486,31 @@ section.visible {
         box-sizing: border-box;
     }
     
-    /* Navigation */
+    /* Navigation - Center Logo on Mobile */
     .nav-container {
         height: 65px;
         padding: 0 20px !important;
         min-height: 65px;
         gap: 0.75rem;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
         overflow: hidden;
+        position: relative;
     }
     
     .nav-logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         flex: 0 0 auto;
         min-width: 0;
-        max-width: calc(100% - 96px);
+        max-width: 200px;
         overflow: hidden;
+        text-align: center;
+        z-index: 1;
     }
     
     .nav-logo a {
@@ -2517,6 +2523,20 @@ section.visible {
         white-space: nowrap;
         display: block;
         max-width: 100%;
+        text-align: center;
+    }
+    
+    .nav-right {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 0 0 auto;
+        flex-shrink: 0;
+        z-index: 2;
     }
     
     .nav-menu {
@@ -2596,14 +2616,7 @@ section.visible {
         text-align: center;
     }
 
-    .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex: 0 0 auto;
-        flex-shrink: 0;
-    }
-
+    /* nav-right sudah diatur di atas */
     .nav-toggle {
         display: flex !important;
         order: 2;
@@ -2655,17 +2668,21 @@ section.visible {
 
     .hero-content {
         grid-template-columns: 1fr !important;
-        text-align: center;
+        text-align: center !important;
         gap: 2.5rem;
         padding: 20px 0 !important;
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .hero-text {
-        text-align: center;
+        text-align: center !important;
         width: 100% !important;
         order: 2;
         padding: 0 !important;
@@ -2673,7 +2690,11 @@ section.visible {
         box-sizing: border-box;
         position: relative;
         z-index: 2;
-        margin: 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
     .hero-image {
@@ -2682,17 +2703,23 @@ section.visible {
         max-width: 100%;
         box-sizing: border-box;
         margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .image-container {
         margin: 0 auto !important;
         max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-title {
         font-size: 2.5rem;
         line-height: 1.25;
-        text-align: center;
+        text-align: center !important;
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 auto 1.25rem auto !important;
@@ -2711,13 +2738,15 @@ section.visible {
     }
     
     .hero-subtitle,
-    .hero-description {
+    .hero-description,
+    .design-badge {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
         padding: 0 10px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
     }
     
     .hero-buttons {
@@ -2725,14 +2754,21 @@ section.visible {
         max-width: 100%;
         box-sizing: border-box;
         padding: 0 10px;
-        justify-content: center;
+        justify-content: center !important;
+        align-items: center !important;
         flex-wrap: wrap;
         gap: 1rem;
+        margin: 0 auto;
+        display: flex;
     }
     
     .btn {
         max-width: 100%;
         box-sizing: border-box;
+        margin: 0 auto;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .hero-subtitle::after {
@@ -2860,12 +2896,13 @@ section.visible {
     
     .section-title {
         font-size: 2.25rem;
-        margin-bottom: 3rem;
+        margin: 0 auto 3rem auto !important;
         padding: 0 1rem;
         max-width: 100%;
         box-sizing: border-box;
         width: 100%;
-        text-align: center;
+        text-align: center !important;
+        display: block;
     }
 
     /* About Section */
@@ -2875,8 +2912,9 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+        text-align: center !important;
     }
     
     .about-text,
@@ -2885,7 +2923,8 @@ section.visible {
         max-width: 100% !important;
         box-sizing: border-box;
         padding: 0;
-        margin: 0;
+        margin: 0 auto;
+        text-align: center !important;
     }
     
     .about-text p {
@@ -2893,8 +2932,19 @@ section.visible {
         max-width: 100% !important;
         box-sizing: border-box;
         padding: 0;
+        margin: 0 auto;
+        text-align: center !important;
         word-wrap: break-word;
         overflow-wrap: break-word;
+    }
+    
+    .about-stats {
+        justify-items: center;
+        text-align: center;
+    }
+    
+    .stat {
+        text-align: center !important;
     }
 
     .about-stats {
@@ -2928,32 +2978,59 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+        justify-items: center;
     }
     
     .skill-category {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .skill-category h3 {
+        text-align: center !important;
     }
 
     /* Projects Section */
+    .projects-filter {
+        justify-content: center !important;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto 2rem auto;
+    }
+    
     .projects-grid {
         grid-template-columns: 1fr !important;
         gap: 2rem;
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+        justify-items: center;
     }
     
     .project-card {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .project-content {
+        text-align: center !important;
+    }
+    
+    .project-content h3,
+    .project-content p,
+    .project-tech {
+        text-align: center !important;
+        justify-content: center;
     }
     
     .project-image,
@@ -2988,8 +3065,9 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+        text-align: center;
     }
     
     .schedule-table-container,
@@ -2997,7 +3075,21 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .schedule-info {
+        text-align: center !important;
+    }
+    
+    .academic-stats {
+        justify-items: center;
+        text-align: center;
+    }
+    
+    .academic-stat {
+        text-align: center !important;
     }
 
     .academic-stats {
@@ -3094,8 +3186,9 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+        text-align: center;
     }
     
     .contact-info,
@@ -3103,21 +3196,43 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
+        text-align: center;
+    }
+    
+    .contact-info h3,
+    .contact-item {
+        text-align: center !important;
+    }
+    
+    .contact-item {
+        justify-content: center;
+        margin: 0 auto;
     }
     
     .social-links {
-        justify-content: center;
+        justify-content: center !important;
+        align-items: center;
         flex-wrap: wrap;
         width: 100%;
         max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
     }
     
     .form-group {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .form-group label {
+        text-align: center !important;
+        display: block;
+        margin: 0 auto;
     }
     
     .form-group input,
@@ -3125,6 +3240,13 @@ section.visible {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .contact-form button[type="submit"] {
+        margin: 0 auto;
+        display: block;
     }
     
     /* Buttons */
@@ -3581,10 +3703,23 @@ section.visible {
         padding: 0 16px;
         min-height: 58px;
         gap: 0.5rem;
+        justify-content: center;
+        position: relative;
     }
     
     .nav-logo {
-        max-width: calc(100% - 96px);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 160px;
+        text-align: center;
+    }
+    
+    .nav-right {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
     }
     
     .nav-logo a {
