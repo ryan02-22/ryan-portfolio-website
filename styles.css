@@ -65,6 +65,9 @@ html {
     max-width: 100vw;
     margin: 0;
     padding: 0;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 /* Theme switching optimization - NO TRANSITIONS */
@@ -79,6 +82,9 @@ body {
     max-width: 100vw;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Animated Background & Atmosphere */
@@ -275,6 +281,11 @@ body::after {
     display: inline-block;
     text-align: center;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    box-sizing: border-box;
+    min-height: 44px;
+    min-width: 44px;
     overflow: hidden;
 }
 
@@ -517,6 +528,16 @@ body.theme-switching * {
     .nav-right .theme-toggle {
         order: 0;
     }
+    
+    .nav-menu {
+        display: flex !important;
+        position: static !important;
+        left: auto !important;
+        width: auto !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
 }
 
 .nav-menu.active {
@@ -602,6 +623,8 @@ body.theme-switching * {
     flex-shrink: 0;
     box-sizing: border-box;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .theme-toggle i {
@@ -3851,5 +3874,173 @@ section.visible {
     .status-bar {
         position: relative;
         margin-top: 20px;
+    }
+}
+
+/* Tablet landscape and small desktop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 32px;
+    }
+    
+    .hero-container {
+        padding: 0 32px;
+    }
+    
+    .nav-container {
+        padding: 0 32px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .section-title {
+        font-size: 2.25rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+    }
+    
+    .about-content {
+        gap: 3rem;
+    }
+    
+    .schedule-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Large desktop (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .container {
+        max-width: 1200px;
+        padding: 0 40px;
+    }
+    
+    .hero-container {
+        max-width: 1200px;
+        padding: 0 40px;
+    }
+    
+    .nav-container {
+        max-width: 1200px;
+        padding: 0 40px;
+    }
+}
+
+/* Extra large desktop (1441px and above) */
+@media (min-width: 1441px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 48px;
+    }
+    
+    .hero-container {
+        max-width: 1400px;
+        padding: 0 48px;
+    }
+    
+    .nav-container {
+        max-width: 1400px;
+        padding: 0 48px;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Landscape orientation optimizations */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .nav-container {
+        height: 60px;
+        padding: 0 20px;
+    }
+}
+
+/* Global image optimization */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Prevent text selection on UI elements */
+.nav-link,
+.btn,
+.theme-toggle,
+.nav-toggle,
+.filter-btn {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Improve scrolling performance */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better focus visibility for accessibility */
+.nav-link:focus-visible,
+.btn:focus-visible,
+.theme-toggle:focus-visible,
+.nav-toggle:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .nav-toggle,
+    .theme-toggle,
+    .back-to-top,
+    .contact-form {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .section {
+        page-break-inside: avoid;
     }
 }

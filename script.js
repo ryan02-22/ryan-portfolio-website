@@ -8,17 +8,45 @@ const projectCards = document.querySelectorAll('.project-card');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
 // Mobile Navigation Toggle
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-});
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+        const isExpanded = navMenu.classList.contains('active');
+        navToggle.setAttribute('aria-expanded', isExpanded);
+    });
+}
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
+        if (navMenu) navMenu.classList.remove('active');
+        if (navToggle) {
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (navMenu && navToggle) {
+        const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
+        if (!isClickInsideNav && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+});
+
+// Close mobile menu on window resize if it's desktop size
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 769 && navMenu && navToggle) {
         navMenu.classList.remove('active');
         navToggle.classList.remove('active');
-    });
+        navToggle.setAttribute('aria-expanded', 'false');
+    }
 });
 
 // Function to update navbar background based on current theme and scroll position
@@ -36,7 +64,8 @@ function updateNavbarBackground() {
 }
 
 // Ultra-fast Dark Mode Toggle - Instant switching
-themeToggle.addEventListener('click', () => {
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
     // Add class to disable transitions
     document.body.classList.add('theme-switching');
     
@@ -58,10 +87,12 @@ themeToggle.addEventListener('click', () => {
     // Save preference
     localStorage.setItem('theme', newTheme);
     
-    // Remove class after a tiny delay to re-enable transitions
-    setTimeout(() => {
-        document.body.classList.remove('theme-switching');
-    }, 50);
+        // Remove class after a tiny delay to re-enable transitions
+        setTimeout(() => {
+            document.body.classList.remove('theme-switching');
+        }, 50);
+    });
+}
 });
 
 // Load saved theme
