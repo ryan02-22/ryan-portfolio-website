@@ -6,18 +6,7 @@ Sitemap: https://your-domain.com/sitemap.xml
 
 # Allow all search engines to crawl
 Allow: /index.html
-Disallow: /articles.html
-Disallow: /write-article.html
-Disallow: /article-detail.html
 Allow: /projects/
-Allow: /styles.css
-Allow: /script.js
-Allow: /ryan.jpg
-
-# Disallow admin or private areas (if any)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/
 
 # Allow specific file types
 Allow: *.css

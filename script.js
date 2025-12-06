@@ -19,17 +19,40 @@ if (navToggle && navMenu) {
         
         // Prevent body scroll when menu is open
         if (isExpanded) {
+            // Save current scroll position
+            const scrollY = window.scrollY;
             document.body.classList.add('menu-open');
             document.body.style.overflow = 'hidden';
+            document.body.style.overflowY = 'hidden';
+            document.body.style.overflowX = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
             document.body.style.height = '100%';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.bottom = '0';
+            // Store scroll position for restoration
+            document.body.dataset.scrollY = scrollY;
         } else {
+            // Restore scroll position
+            const scrollY = document.body.dataset.scrollY || 0;
             document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
+            document.body.style.overflowY = 'auto';
+            document.body.style.overflowX = 'hidden';
             document.body.style.position = '';
             document.body.style.width = '';
             document.body.style.height = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.bottom = '';
+            // Restore scroll position
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY));
+            }
+            delete document.body.dataset.scrollY;
         }
     };
     
@@ -46,12 +69,21 @@ const closeMobileMenu = () => {
         navToggle.classList.remove('active');
         navToggle.setAttribute('aria-expanded', 'false');
     }
-    // Restore body scroll
+    // Restore body scroll completely
     document.body.classList.remove('menu-open');
     document.body.style.overflow = '';
+    document.body.style.overflowY = 'auto';
+    document.body.style.overflowX = 'hidden';
     document.body.style.position = '';
     document.body.style.width = '';
     document.body.style.height = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.bottom = '';
+    
+    // Force reflow to ensure scrolling is restored
+    void document.body.offsetHeight;
 };
 
 document.querySelectorAll('.nav-link').forEach(link => {
@@ -111,7 +143,7 @@ function updateNavbarBackground() {
     navbar.style.backdropFilter = 'blur(10px)';
 }
 
-// Ultra-fast Dark Mode Toggle - Instant switching with touch support
+// Dark Mode Toggle
 if (themeToggle) {
     const handleThemeToggle = (e) => {
         e.preventDefault();
@@ -145,7 +177,6 @@ if (themeToggle) {
     };
     
     themeToggle.addEventListener('click', handleThemeToggle);
-    themeToggle.addEventListener('touchend', handleThemeToggle);
 }
 
 // Load saved theme
@@ -175,7 +206,6 @@ if (anchorLinks && anchorLinks.length > 0) {
             if (href && href !== '#') {
                 const target = document.querySelector(href);
                 if (target) {
-                    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                     // Close mobile menu if open
                     if (window.innerWidth < 769) {
                         closeMobileMenu();
@@ -183,7 +213,7 @@ if (anchorLinks && anchorLinks.length > 0) {
                     // Small delay to allow menu close animation
                     setTimeout(() => {
                         target.scrollIntoView({
-                            behavior: reducedMotion ? 'auto' : 'smooth',
+                            behavior: prefersReducedMotion ? 'auto' : 'smooth',
                             block: 'start'
                         });
                     }, window.innerWidth < 769 ? 300 : 0);
@@ -191,7 +221,6 @@ if (anchorLinks && anchorLinks.length > 0) {
             }
         };
         anchor.addEventListener('click', handleAnchorClick);
-        anchor.addEventListener('touchend', handleAnchorClick);
     });
 }
 
@@ -266,60 +295,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize profile photo functionality
     initProfilePhoto();
     
-    // Add animation classes to elements
-    setTimeout(() => {
-        // Get reduced motion preference
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Add animation classes to elements
+        setTimeout(() => {
+            // Hero section
+            const heroText = document.querySelector('.hero-text');
+            const heroImage = document.querySelector('.hero-image');
+            if (!prefersReducedMotion) {
+                if (heroText) heroText.classList.add('slide-in-left');
+                if (heroImage) heroImage.classList.add('slide-in-right');
+            }
+            
+            // About section
+            if (!prefersReducedMotion) {
+                document.querySelectorAll('.about-text, .about-timeline').forEach((el, index) => {
+                    el.classList.add(index % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
+                });
+            }
+            
+            // Skills section
+            if (!prefersReducedMotion) {
+                document.querySelectorAll('.skill-category').forEach((el, index) => {
+                    el.classList.add('fade-in');
+                    el.style.animationDelay = `${index * 0.2}s`;
+                });
+            }
+            
+            // Projects section
+            if (!prefersReducedMotion) {
+                document.querySelectorAll('.project-card').forEach((el, index) => {
+                    el.classList.add('fade-in');
+                    el.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+            
+            // Contact section
+            const contactInfo = document.querySelector('.contact-info');
+            const contactFormElement = document.querySelector('.contact-form');
+            if (!prefersReducedMotion) {
+                if (contactInfo) contactInfo.classList.add('slide-in-left');
+                if (contactFormElement) contactFormElement.classList.add('slide-in-right');
+            }
+            
+            // Schedule section
+            const scheduleTable = document.querySelector('.schedule-table-container');
+            const scheduleInfo = document.querySelector('.schedule-info');
+            if (!prefersReducedMotion) {
+                if (scheduleTable) scheduleTable.classList.add('slide-in-left');
+                if (scheduleInfo) scheduleInfo.classList.add('slide-in-right');
+            }
         
-        // Hero section
-        const heroText = document.querySelector('.hero-text');
-        const heroImage = document.querySelector('.hero-image');
-        if (!reducedMotion) {
-            if (heroText) heroText.classList.add('slide-in-left');
-            if (heroImage) heroImage.classList.add('slide-in-right');
-        }
-        
-        // About section
-        if (!reducedMotion) {
-            document.querySelectorAll('.about-text, .about-timeline').forEach((el, index) => {
-                el.classList.add(index % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
-            });
-        }
-        
-        // Skills section
-        if (!reducedMotion) {
-            document.querySelectorAll('.skill-category').forEach((el, index) => {
-                el.classList.add('fade-in');
-                el.style.animationDelay = `${index * 0.2}s`;
-            });
-        }
-        
-        // Projects section
-        if (!reducedMotion) {
-            document.querySelectorAll('.project-card').forEach((el, index) => {
-                el.classList.add('fade-in');
-                el.style.animationDelay = `${index * 0.1}s`;
-            });
-        }
-        
-        // Contact section
-        const contactInfo = document.querySelector('.contact-info');
-        const contactForm = document.querySelector('.contact-form');
-        if (!reducedMotion) {
-            if (contactInfo) contactInfo.classList.add('slide-in-left');
-            if (contactForm) contactForm.classList.add('slide-in-right');
-        }
-        
-        // Schedule section
-        const scheduleTable = document.querySelector('.schedule-table-container');
-        const scheduleInfo = document.querySelector('.schedule-info');
-        if (!reducedMotion) {
-            if (scheduleTable) scheduleTable.classList.add('slide-in-left');
-            if (scheduleInfo) scheduleInfo.classList.add('slide-in-right');
-        }
-        
-        // Mobile: Fix schedule table rendering
-        fixScheduleTableMobile();
         
         // Add animation classes to section titles
         document.querySelectorAll('.section-title').forEach((title, index) => {
@@ -435,7 +459,7 @@ if (skillsSection) {
     skillsObserver.observe(skillsSection);
 }
 
-// Project Filter - Support touch events
+// Project Filter
 if (filterBtns && filterBtns.length > 0 && projectCards && projectCards.length > 0) {
     filterBtns.forEach(btn => {
         const handleFilter = (e) => {
@@ -460,7 +484,6 @@ if (filterBtns && filterBtns.length > 0 && projectCards && projectCards.length >
         };
         
         btn.addEventListener('click', handleFilter);
-        btn.addEventListener('touchend', handleFilter);
     });
 }
 
@@ -564,7 +587,7 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Notification System - Mobile optimized
+// Notification System
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
@@ -639,11 +662,11 @@ window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         const originalText = heroTitle.textContent || heroTitle.innerText;
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!reducedMotion && originalText) {
+        if (!prefersReducedMotion && originalText) {
             typeWriter(heroTitle, originalText, 50);
         }
     }
+    
 });
 
 // Add CSS for error states
@@ -710,7 +733,7 @@ function initProfilePhoto() {
     }
 }
 
-// Mobile Schedule Table Fix
+// Mobile Schedule Table Fix - Untuk device Android seperti Samsung Galaxy S20 Ultra
 function fixScheduleTableMobile() {
     const scheduleTable = document.querySelector('.schedule-table');
     const scheduleContainer = document.querySelector('.schedule-table-container');
@@ -793,4 +816,4 @@ window.addEventListener('orientationchange', () => {
     setTimeout(fixScheduleTableMobile, 100);
 });
 
-// Remove duplicate DOMContentLoaded - all initialization is in the first one above
+
