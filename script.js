@@ -318,6 +318,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scheduleInfo) scheduleInfo.classList.add('slide-in-right');
         }
         
+        // Mobile: Fix schedule table rendering
+        fixScheduleTableMobile();
+        
         // Add animation classes to section titles
         document.querySelectorAll('.section-title').forEach((title, index) => {
             title.classList.add('fade-in');
@@ -706,5 +709,68 @@ function initProfilePhoto() {
         imgObserver.observe(profileImg);
     }
 }
+
+// Mobile Schedule Table Fix
+function fixScheduleTableMobile() {
+    const scheduleTable = document.querySelector('.schedule-table');
+    const scheduleContainer = document.querySelector('.schedule-table-container');
+    
+    if (!scheduleTable || !scheduleContainer) return;
+    
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Force table to render properly
+        scheduleTable.style.display = 'table';
+        scheduleTable.style.tableLayout = 'auto';
+        scheduleTable.style.width = 'auto';
+        scheduleTable.style.minWidth = '920px';
+        
+        // Ensure container allows scrolling
+        scheduleContainer.style.overflowX = 'auto';
+        scheduleContainer.style.webkitOverflowScrolling = 'touch';
+        
+        // Fix all cells to prevent text truncation
+        const firstCells = scheduleTable.querySelectorAll('td:first-child, th:first-child');
+        firstCells.forEach(cell => {
+            cell.style.minWidth = '450px';
+            cell.style.whiteSpace = 'normal';
+            cell.style.wordWrap = 'break-word';
+            cell.style.overflowWrap = 'anywhere';
+            cell.style.wordBreak = 'break-word';
+        });
+        
+        // Add scroll hint for mobile
+        if (!scheduleContainer.querySelector('.scroll-hint')) {
+            const scrollHint = document.createElement('div');
+            scrollHint.className = 'scroll-hint';
+            scrollHint.textContent = '← Geser untuk melihat lebih banyak →';
+            scrollHint.style.cssText = `
+                text-align: center;
+                padding: 8px;
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+                background: var(--bg-secondary);
+                border-radius: 8px;
+                margin-bottom: 10px;
+                display: block;
+            `;
+            scheduleContainer.insertBefore(scrollHint, scheduleTable);
+        }
+    } else {
+        // Remove scroll hint on desktop
+        const scrollHint = scheduleContainer.querySelector('.scroll-hint');
+        if (scrollHint) {
+            scrollHint.remove();
+        }
+    }
+}
+
+// Run on load and resize
+window.addEventListener('load', fixScheduleTableMobile);
+window.addEventListener('resize', debounce(fixScheduleTableMobile, 250));
+window.addEventListener('orientationchange', () => {
+    setTimeout(fixScheduleTableMobile, 100);
+});
 
 // Remove duplicate DOMContentLoaded - all initialization is in the first one above
