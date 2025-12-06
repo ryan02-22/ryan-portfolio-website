@@ -8,7 +8,7 @@ const projectCards = document.querySelectorAll('.project-card');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
 // Mobile Navigation Toggle
-if (navToggle) {
+if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
@@ -52,6 +52,8 @@ window.addEventListener('resize', () => {
 // Function to update navbar background based on current theme and scroll position
 function updateNavbarBackground() {
     const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    
     const isDark = document.body.getAttribute('data-theme') === 'dark';
     
     // Use CSS variables for consistent theming
@@ -66,59 +68,70 @@ function updateNavbarBackground() {
 // Ultra-fast Dark Mode Toggle - Instant switching
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-    // Add class to disable transitions
-    document.body.classList.add('theme-switching');
-    
-    // Get current theme
-    const currentTheme = document.body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    // Change theme immediately
-    document.body.setAttribute('data-theme', newTheme);
-    
-    // Update icon immediately
-    themeToggle.innerHTML = newTheme === 'dark' 
-        ? '<i class="fas fa-sun"></i>' 
-        : '<i class="fas fa-moon"></i>';
-    
-    // Update navbar immediately
-    updateNavbarBackground();
-    
-    // Save preference
-    localStorage.setItem('theme', newTheme);
-    
+        // Add class to disable transitions
+        document.body.classList.add('theme-switching');
+        
+        // Get current theme
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Change theme immediately
+        document.body.setAttribute('data-theme', newTheme);
+        
+        // Update icon immediately
+        themeToggle.innerHTML = newTheme === 'dark' 
+            ? '<i class="fas fa-sun"></i>' 
+            : '<i class="fas fa-moon"></i>';
+        
+        // Update navbar immediately
+        updateNavbarBackground();
+        
+        // Save preference
+        localStorage.setItem('theme', newTheme);
+        
         // Remove class after a tiny delay to re-enable transitions
         setTimeout(() => {
             document.body.classList.remove('theme-switching');
         }, 50);
     });
 }
-});
 
 // Load saved theme
 const savedTheme = localStorage.getItem('theme') || 'light';
 document.body.setAttribute('data-theme', savedTheme);
-themeToggle.innerHTML = savedTheme === 'dark' 
-    ? '<i class="fas fa-sun"></i>' 
-    : '<i class="fas fa-moon"></i>';
-
-// Update navbar background on page load
-updateNavbarBackground();
+if (themeToggle) {
+    themeToggle.innerHTML = savedTheme === 'dark' 
+        ? '<i class="fas fa-sun"></i>' 
+        : '<i class="fas fa-moon"></i>';
+}
 
 // Smooth Scrolling for Navigation Links (honor reduced motion)
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: prefersReducedMotion ? 'auto' : 'smooth',
-                block: 'start'
-            });
-        }
+
+// Update navbar background on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateNavbarBackground);
+} else {
+    updateNavbarBackground();
+}
+const anchorLinks = document.querySelectorAll('a[href^="#"]');
+if (anchorLinks && anchorLinks.length > 0) {
+    anchorLinks.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
     });
-});
+}
 
 // Combined scroll handler for navbar, active nav, and parallax
 function handleScroll() {
@@ -134,10 +147,12 @@ function handleScroll() {
             currentId = `#${section.id}`;
         }
     });
-    navLinks.forEach(link => {
-        const isActive = link.getAttribute('href') === currentId;
-        link.setAttribute('aria-current', isActive ? 'true' : 'false');
-    });
+    if (navLinks && navLinks.length > 0) {
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === currentId;
+            link.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+    }
 
     // Parallax effect (only if reduced motion is not preferred)
     if (!prefersReducedMotion) {
@@ -174,9 +189,12 @@ if (!prefersReducedMotion) {
     }, observerOptions);
     
     // Observe all animated elements
-    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, section, .section-title').forEach(el => {
-        observer.observe(el);
-    });
+    const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, section, .section-title');
+    if (animatedElements && animatedElements.length > 0) {
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+    }
 }
 
 // Initialize everything when DOM is loaded
@@ -188,21 +206,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add animation classes to elements
     setTimeout(() => {
+        // Get reduced motion preference
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
         // Hero section
         const heroText = document.querySelector('.hero-text');
         const heroImage = document.querySelector('.hero-image');
-        if (!prefersReducedMotion) {
+        if (!reducedMotion) {
             if (heroText) heroText.classList.add('slide-in-left');
             if (heroImage) heroImage.classList.add('slide-in-right');
         }
         
         // About section
-        document.querySelectorAll('.about-text, .about-timeline').forEach((el, index) => {
-            el.classList.add(index % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
-        });
+        if (!reducedMotion) {
+            document.querySelectorAll('.about-text, .about-timeline').forEach((el, index) => {
+                el.classList.add(index % 2 === 0 ? 'slide-in-left' : 'slide-in-right');
+            });
+        }
         
         // Skills section
-        if (!prefersReducedMotion) {
+        if (!reducedMotion) {
             document.querySelectorAll('.skill-category').forEach((el, index) => {
                 el.classList.add('fade-in');
                 el.style.animationDelay = `${index * 0.2}s`;
@@ -210,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Projects section
-        if (!prefersReducedMotion) {
+        if (!reducedMotion) {
             document.querySelectorAll('.project-card').forEach((el, index) => {
                 el.classList.add('fade-in');
                 el.style.animationDelay = `${index * 0.1}s`;
@@ -220,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Contact section
         const contactInfo = document.querySelector('.contact-info');
         const contactForm = document.querySelector('.contact-form');
-        if (!prefersReducedMotion) {
+        if (!reducedMotion) {
             if (contactInfo) contactInfo.classList.add('slide-in-left');
             if (contactForm) contactForm.classList.add('slide-in-right');
         }
@@ -228,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Schedule section
         const scheduleTable = document.querySelector('.schedule-table-container');
         const scheduleInfo = document.querySelector('.schedule-info');
-        if (!prefersReducedMotion) {
+        if (!reducedMotion) {
             if (scheduleTable) scheduleTable.classList.add('slide-in-left');
             if (scheduleInfo) scheduleInfo.classList.add('slide-in-right');
         }
@@ -348,73 +371,79 @@ if (skillsSection) {
 }
 
 // Project Filter
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const filter = btn.getAttribute('data-filter');
-        
-        projectCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeIn 0.5s ease-in-out';
-            } else {
-                card.style.display = 'none';
-            }
+if (filterBtns && filterBtns.length > 0 && projectCards && projectCards.length > 0) {
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            const filter = btn.getAttribute('data-filter');
+            
+            projectCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease-in-out';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
-});
+}
 
 // Contact Form Validation and Submission
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(contactForm);
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    // Show loading state
-    submitBtn.innerHTML = '<span class="loading"></span> Sending...';
-    submitBtn.disabled = true;
-    
-    try {
-        const name = formData.get('name') || '';
-        const email = formData.get('email') || '';
-        const subject = formData.get('subject') || 'New Inquiry';
-        const message = formData.get('message') || '';
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        if (!submitBtn) return;
+        
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+            const name = formData.get('name') || '';
+            const email = formData.get('email') || '';
+            const subject = formData.get('subject') || 'New Inquiry';
+            const message = formData.get('message') || '';
 
-        const waNumber = '6282328649895';
-        const waText = encodeURIComponent(`Halo, saya ${name}\nEmail: ${email}\nSubjek: ${subject}\n\n${message}`);
-        const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
+            const waNumber = '6282328649895';
+            const waText = encodeURIComponent(`Halo, saya ${name}\nEmail: ${email}\nSubjek: ${subject}\n\n${message}`);
+            const waUrl = `https://wa.me/${waNumber}?text=${waText}`;
 
-        // Buka WhatsApp untuk pengiriman cepat
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
+            // Buka WhatsApp untuk pengiriman cepat
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
 
-        // Fallback ke mailto jika WA tidak tersedia
-        const mailto = `mailto:ryan73147@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\n${message}`)}`;
-        setTimeout(() => {
-            window.location.href = mailto;
-        }, 500);
+            // Fallback ke mailto jika WA tidak tersedia
+            const mailto = `mailto:ryan73147@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\n${message}`)}`;
+            setTimeout(() => {
+                window.location.href = mailto;
+            }, 500);
 
-        showNotification('Mengarahkan ke WhatsApp/Email...', 'success');
-        contactForm.reset();
-    } catch (error) {
-        showNotification('Gagal membuka WhatsApp/Email. Coba lagi.', 'error');
-    } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }
-});
+            showNotification('Mengarahkan ke WhatsApp/Email...', 'success');
+            contactForm.reset();
+        } catch (error) {
+            showNotification('Gagal membuka WhatsApp/Email. Coba lagi.', 'error');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
 
-// Form Validation
-const formInputs = contactForm.querySelectorAll('input, textarea');
-formInputs.forEach(input => {
-    input.addEventListener('blur', validateField);
-    input.addEventListener('input', clearFieldError);
-});
+    // Form Validation
+    const formInputs = contactForm.querySelectorAll('input, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearFieldError);
+    });
+}
 
 function validateField(e) {
     const field = e.target;
@@ -532,11 +561,10 @@ function typeWriter(element, text, speed = 100) {
 window.addEventListener('load', () => {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
-        const originalText = heroTitle.innerHTML;
-        if (!prefersReducedMotion) {
+        const originalText = heroTitle.textContent || heroTitle.innerText;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reducedMotion && originalText) {
             typeWriter(heroTitle, originalText, 50);
-        } else {
-            heroTitle.innerHTML = originalText;
         }
     }
 });
