@@ -4625,3 +4625,79 @@ img {
         page-break-inside: avoid;
     }
 }
+
+/* ===== Mobile / Responsiveness Fixes (added) ===== */
+/* Container padding override for small screens */
+@media (max-width: 30rem) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Prevent horizontal overflow on small devices */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Tame very large headings and provide consistent mobile sizes */
+@media (max-width: 30rem) {
+    h1, .title-xl {
+        font-size: 1.9rem;
+        line-height: 2.3rem;
+        word-break: break-word;
+    }
+
+    h2, .title-lg {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Make cards full width and avoid being cut off */
+.card {
+    border-radius: 14px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure header / navbar content doesn't overlap */
+header,
+.navbar,
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+/* Gradient strip fix */
+.gradient-bar {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Minor mobile touch-ups: keep hamburger above content */
+.nav-toggle {
+    z-index: 1100;
+}
+
+/* Helpful utility: container class for tailwind-like projects */
+.container--fluid {
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* End mobile fixes */
