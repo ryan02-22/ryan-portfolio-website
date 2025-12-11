@@ -107,6 +107,65 @@ body {
     min-height: 100vh;
 }
 
+/* Ensure main content sits below fixed navbar to avoid being covered */
+:root {
+    --nav-height: 4.6875rem;
+}
+
+main {
+    padding-top: calc(var(--nav-height) + 0.5rem);
+    box-sizing: border-box;
+}
+
+/* Allow containers to show overflow (avoid clipping rounded cards) */
+.container {
+    overflow: visible;
+}
+
+/* On small screens, hide or move the back-to-top to avoid covering CTA/buttons */
+@media (max-width: 48rem) {
+    .back-to-top {
+        display: none; /* hide on small screens to prevent blocking form controls */
+    }
+}
+
+/* Make contact form fully interactive and above background elements */
+.contact-form,
+.schedule-content,
+.projects-grid,
+.project-card,
+.schedule-table-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Improve table responsiveness: allow container scroll and allow wrapping */
+.schedule-table {
+    width: 100%;
+    min-width: 0; /* allow table to shrink inside scroll container */
+    table-layout: auto;
+}
+
+.schedule-table td,
+.schedule-table th {
+    word-break: break-word;
+    white-space: normal;
+}
+
+/* Ensure buttons inside forms are visible and not covered */
+.contact-form button {
+    position: relative;
+    z-index: 3;
+}
+
+/* Reduce hero top spacing only where necessary (keeps title visible) */
+@media (max-width: 48rem) {
+    .hero {
+        padding-top: calc(var(--nav-height) + 0.25rem);
+    }
+}
+
+
 /* Animated Background & Atmosphere */
 body::before {
     content: '';
@@ -4701,3 +4760,72 @@ header,
 }
 
 /* End mobile fixes */
+
+/* ===== Additional Mobile Tweaks ===== */
+/* Responsive tables and project cards to avoid horizontal overflow */
+@media (max-width: 48rem) {
+    .schedule-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+
+    /* keep table readable while allowing horizontal scroll on very small screens */
+    .schedule-table {
+        width: 100%;
+        min-width: 560px;
+        border-collapse: collapse;
+    }
+
+    /* Make projects grid single column on small screens */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-card,
+    .project-image {
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .project-content {
+        padding: 12px;
+    }
+}
+
+/* Tighter rules for very small devices (<=420px) */
+@media (max-width: 26.25rem) {
+    /* reduce hero title for very small screens */
+    h1.hero-title,
+    .hero-title {
+        font-size: 1.6rem;
+        line-height: 2rem;
+        word-break: break-word;
+    }
+
+    /* add gentle padding so images don't touch viewport edge */
+    .hero-image,
+    .project-image {
+        padding: 0.5rem;
+        box-sizing: border-box;
+    }
+
+    /* ensure cards and containers respect viewport */
+    .card,
+    .project-card,
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+/* minor: prevent accidental horizontal overflow from wide elements */
+img, iframe, embed, object, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* End additional mobile tweaks */

@@ -1,0 +1,28 @@
+{
+  "name": "pemrograman-web1",
+  "version": "1.0.0",
+  "description": "Portfolio website pribadi untuk mahasiswa Teknik Informatika dengan desain modern dan responsif. Dibuat sebagai tugas mata kuliah Pemrograman Web 1.",
+  "main": "script.js",
+  "scripts": {
+    "build:css": "node build-tailwind.js",
+    "watch:css": "node build-tailwind.js --watch",
+    "dev": "npm run watch:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryan02-22/ryan-portfolio-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryan02-22/ryan-portfolio-website/issues"
+  },
+  "homepage": "https://github.com/ryan02-22/ryan-portfolio-website#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  }
+}

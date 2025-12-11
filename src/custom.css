@@ -1,0 +1,426 @@
+/* Custom Components & Animations for Tailwind CSS */
+
+@layer components {
+    /* Base visibility fixes */
+    h1, h2, h3, h4, h5, h6, p, span, div, a {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Custom theme variables */
+    :root {
+        --nav-height: 4.6875rem;
+        --primary-color: #667eea;
+        --primary-dark: #5a6fd8;
+        --secondary-color: #764ba2;
+        --accent-color: #f093fb;
+        --text-primary: #2d3748;
+        --text-secondary: #4a5568;
+        --text-light: #718096;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f7fafc;
+        --bg-tertiary: #edf2f7;
+        --border-color: #e2e8f0;
+        --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        --primary-hover: #5a6fd8;
+        --secondary-hover: #6a4190;
+        --success-color: #10b981;
+        --hover-color: rgba(102, 126, 234, 0.1);
+    }
+
+    [data-theme="dark"] {
+        --text-primary: #f7fafc;
+        --text-secondary: #e2e8f0;
+        --text-light: #a0aec0;
+        --bg-primary: #1a202c;
+        --bg-secondary: #2d3748;
+        --bg-tertiary: #4a5568;
+        --border-color: #4a5568;
+        --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        --hover-color: rgba(102, 126, 234, 0.2);
+    }
+
+    /* Main layout fixes */
+    main {
+        padding-top: calc(var(--nav-height) + 0.5rem);
+    }
+
+    .container {
+        overflow: visible;
+    }
+
+    /* Form and interactive elements */
+    .contact-form,
+    .schedule-content,
+    .projects-grid,
+    .project-card,
+    .schedule-table-container {
+        position: relative;
+        z-index: 10;
+    }
+
+    .contact-form button {
+        position: relative;
+        z-index: 30;
+    }
+
+    /* Table responsiveness */
+    .schedule-table {
+        width: 100%;
+        min-width: 0;
+        table-layout: auto;
+    }
+
+    .schedule-table td,
+    .schedule-table th {
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    /* Back-to-top hidden on mobile */
+    @media (max-width: 48rem) {
+        .back-to-top {
+            display: none;
+        }
+    }
+
+    /* Hero section mobile spacing */
+    @media (max-width: 48rem) {
+        .hero {
+            padding-top: calc(var(--nav-height) + 0.25rem);
+        }
+    }
+}
+
+@layer utilities {
+    /* Custom utility classes */
+    .text-primary {
+        color: #667eea;
+    }
+
+    .text-secondary {
+        color: #764ba2;
+    }
+
+    .bg-primary-gradient {
+        background: linear-gradient(to bottom right, #667eea, #764ba2);
+    }
+
+    .bg-secondary-gradient {
+        background: linear-gradient(to bottom right, #f093fb, #f5576c);
+    }
+
+    .shadow-theme-light {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .shadow-theme-medium {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .shadow-theme-heavy {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* Keyframe animations */
+@keyframes backgroundShift {
+    0%, 100% {
+        transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateX(-0.9375rem) translateY(-0.5rem) scale(1.05) rotate(1deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(0.625rem) translateY(-0.9375rem) scale(0.95) rotate(-1deg);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateX(-0.5rem) translateY(0.625rem) scale(1.02) rotate(0.5deg);
+        opacity: 1;
+    }
+}
+
+@keyframes floatingParticles {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-0.5rem) translateX(0.1875rem) rotate(90deg);
+    }
+    50% {
+        transform: translateY(-0.1875rem) translateX(-0.1875rem) rotate(180deg);
+    }
+    75% {
+        transform: translateY(-0.75rem) translateX(0.125rem) rotate(270deg);
+    }
+    100% {
+        transform: translateY(0) translateX(0) rotate(360deg);
+    }
+}
+
+@keyframes morphShape {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+@keyframes pulseRing {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes rotateShape {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateDashed {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes heroAtmosphere {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateY(-0.625rem);
+    }
+}
+
+@keyframes floatBadge {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-0.625rem) rotate(2deg);
+    }
+}
+
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes expandUnderline {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes containerGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-0.625rem);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1rem);
+    }
+}
+
+@keyframes expandLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes expandLineReverse {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@keyframes expandLineSkill {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes gradientFlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes logoGradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Animated background for body */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(240, 147, 251, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 60% 20%, rgba(79, 172, 254, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(255, 154, 158, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
+    animation: backgroundShift 20s ease-in-out infinite;
+    z-index: -2;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+[data-theme="dark"] body::before {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(240, 147, 251, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 60% 20%, rgba(79, 172, 254, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(255, 154, 158, 0.18) 0%, transparent 50%),
+        linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+}
+
+/* Floating particles effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.15) 2px, transparent 2px),
+        radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.15) 2px, transparent 2px),
+        radial-gradient(circle at 30% 70%, rgba(240, 147, 251, 0.12) 1px, transparent 1px),
+        radial-gradient(circle at 70% 30%, rgba(79, 172, 254, 0.12) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(255, 154, 158, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.08) 1px, transparent 1px);
+    background-size: 12.5rem 12.5rem, 18.75rem 18.75rem, 9.375rem 9.375rem, 15.625rem 15.625rem, 6.25rem 6.25rem, 11.25rem 11.25rem, 13.75rem 13.75rem;
+    animation: floatingParticles 25s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+[data-theme="dark"] body::after {
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.25) 2px, transparent 2px),
+        radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.25) 2px, transparent 2px),
+        radial-gradient(circle at 30% 70%, rgba(240, 147, 251, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 70% 30%, rgba(79, 172, 254, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(255, 154, 158, 0.18) 1px, transparent 1px),
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.15) 1px, transparent 1px);
+}
+
+/* Disable animations on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after,
+    .animate-backgroundShift,
+    .animate-floatingParticles,
+    .animate-morphShape,
+    .animate-pulseRing,
+    .animate-rotateShape,
+    .animate-heroAtmosphere,
+    .animate-floatBadge,
+    .animate-rotateIcon,
+    .animate-gradientShift,
+    .animate-containerGlow,
+    .animate-float,
+    .animate-bounce,
+    .animate-shimmer,
+    .animate-logoGradient {
+        animation: none !important;
+    }
+}
+
