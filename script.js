@@ -1,7 +1,8 @@
 // DOM Elements
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
-const themeToggle = document.getElementById('theme-icon');
+const themeToggleBtn = document.querySelector('.theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 const contactForm = document.getElementById('contact-form');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
@@ -30,7 +31,7 @@ if (navToggle && navMenu) {
         navToggle.setAttribute('aria-expanded', isExpanded);
         document.body.style.overflow = isExpanded ? 'hidden' : '';
     };
-    
+
     navToggle.addEventListener('click', handleMenuToggle);
 }
 
@@ -63,31 +64,29 @@ function updateNavbarBackground() {
     navbar.style.backdropFilter = 'blur(10px)';
 }
 
-if (themeToggle) {
+if (themeToggleBtn && themeIcon) {
     const handleThemeToggle = (e) => {
         e.preventDefault();
         const currentTheme = document.body.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         document.body.setAttribute('data-theme', newTheme);
-        themeToggle.innerHTML = newTheme === 'dark' 
-            ? '<i class="fas fa-sun"></i>' 
-            : '<i class="fas fa-moon"></i>';
-        
+
+        // Update icon class
+        themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
         updateNavbarBackground();
         localStorage.setItem('theme', newTheme);
     };
-    
-    themeToggle.addEventListener('click', handleThemeToggle);
+
+    themeToggleBtn.addEventListener('click', handleThemeToggle);
 }
 
 // Load saved theme
 const savedTheme = localStorage.getItem('theme') || 'light';
 document.body.setAttribute('data-theme', savedTheme);
-if (themeToggle) {
-    themeToggle.innerHTML = savedTheme === 'dark' 
-        ? '<i class="fas fa-sun"></i>' 
-        : '<i class="fas fa-moon"></i>';
+if (themeIcon) {
+    themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
 // ===================
@@ -119,7 +118,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 function handleScroll() {
     updateNavbarBackground();
-    
+
     // Active nav highlighting
     const sections = document.querySelectorAll('main section');
     let currentId = '';
@@ -145,22 +144,22 @@ window.addEventListener('scroll', handleScroll, { passive: true });
 
 function animateCounter(element, targetValue, duration) {
     const startTime = performance.now();
-    
+
     function updateCounter(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const easeOutCubic = 1 - Math.pow(1 - progress, 3);
         const currentValue = Math.floor(targetValue * easeOutCubic);
-        
+
         element.textContent = currentValue + '%';
-        
+
         if (progress < 1) {
             requestAnimationFrame(updateCounter);
         } else {
             element.textContent = targetValue + '%';
         }
     }
-    
+
     requestAnimationFrame(updateCounter);
 }
 
@@ -172,8 +171,8 @@ const skillsObserver = new IntersectionObserver((entries) => {
                 setTimeout(() => {
                     const progressBar = item.querySelector('.skill-progress');
                     const percentageElement = item.querySelector('.skill-percentage');
-                    
-                   if (progressBar && percentageElement) {
+
+                    if (progressBar && percentageElement) {
                         const targetWidth = progressBar.getAttribute('data-width');
                         progressBar.style.width = targetWidth + '%';
                         animateCounter(percentageElement, parseInt(targetWidth), 2000);
@@ -198,7 +197,7 @@ if (filterBtns && filterBtns.length > 0 && projectCards && projectCards.length >
             e.preventDefault();
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             const filter = btn.getAttribute('data-filter');
             projectCards.forEach(card => {
                 if (filter === 'all' || card.getAttribute('data-category') === filter) {
@@ -219,15 +218,15 @@ if (filterBtns && filterBtns.length > 0 && projectCards && projectCards.length >
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(contactForm);
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         if (!submitBtn) return;
-        
+
         const originalText = submitBtn.textContent;
         submitBtn.innerHTML = '<span>📤</span> Sending...';
         submitBtn.disabled = true;
-        
+
         try {
             const name = formData.get('name') || '';
             const email = formData.get('email') || '';
@@ -269,7 +268,7 @@ function showNotification(message, type = 'info') {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         font-size: 0.9rem;
     `;
-    
+
     document.body.appendChild(notification);
     setTimeout(() => notification.style.transform = 'translateY(0)', 100);
     setTimeout(() => {
@@ -284,7 +283,7 @@ function showNotification(message, type = 'info') {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Portfolio loaded!');
-    
+
     const backToTop = document.getElementById('back-to-top');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -294,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
     }
-    
+
     // Initialize on load
     updateNavbarBackground();
 });

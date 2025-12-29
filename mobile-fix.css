@@ -94,6 +94,7 @@ body {
     }
 
     .hero-content {
+        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
@@ -132,19 +133,7 @@ body {
         max-width: 300px !important;
     }
 
-    /* Fix profile image container */
-    .hero-image {
-        max-width: 100% !important;
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
-    }
-
-    .image-container {
-        max-width: 280px !important;
-        width: 100% !important;
-    }
-
+    /* Hero sections specific mobile tweaks */
     .profile-photo img {
         max-width: 100% !important;
         height: auto !important;
@@ -371,18 +360,59 @@ body {
    =================== */
 
 @media (max-width: 768px) {
-    .nav-container {
+
+    /* Navbar Alignment Overrides */
+    html body div.nav-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        position: relative !important;
         padding: 0 1rem !important;
+        width: 100% !important;
+        height: 4.6875rem !important;
     }
 
-    .nav-menu {
-        max-width: 90vw !important;
-        left: 5vw !important;
-        right: 5vw !important;
+    html body a.nav-logo {
+        position: static !important;
+        transform: none !important;
+        margin: 0 !important;
+        flex: 0 1 auto !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        left: auto !important;
+    }
+
+    html body div.nav-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        margin-left: auto !important;
+        flex: 0 0 auto !important;
+        position: static !important;
+    }
+
+    /* Theme toggle button cleanup */
+    html body .theme-toggle {
+        width: 2.75rem !important;
+        height: 2.75rem !important;
+        min-width: 2.75rem !important;
+        min-height: 2.75rem !important;
+        order: 1 !important;
+    }
+
+    html body .nav-toggle {
+        order: 2 !important;
     }
 
     .nav-toggle {
         display: flex !important;
+        order: 2;
+    }
+
+    .theme-toggle {
+        order: 1;
     }
 
     /* FIX: Mobile Menu Scroll Issue */

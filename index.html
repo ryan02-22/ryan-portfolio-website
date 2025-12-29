@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Portfolio website Adha Adnan Febryan - Mahasiswa Teknik Informatika dengan keahlian dalam web development, mobile apps, dan artificial intelligence. Lihat proyek dan pengalaman saya.">
-    <meta name="keywords" content="portfolio, web developer, mobile developer, teknik informatika, adha adnan febryan, ryan, frontend, backend, javascript, html, css, react, vue, nodejs, python, php, mysql, responsive design, ui/ux">
+    <meta name="description"
+        content="Portfolio website Adha Adnan Febryan - Mahasiswa Teknik Informatika dengan keahlian dalam web development, mobile apps, dan artificial intelligence. Lihat proyek dan pengalaman saya.">
+    <meta name="keywords"
+        content="portfolio, web developer, mobile developer, teknik informatika, adha adnan febryan, ryan, frontend, backend, javascript, html, css, react, vue, nodejs, python, php, mysql, responsive design, ui/ux">
     <meta name="author" content="Adha Adnan Febryan">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Indonesian">
@@ -17,14 +20,14 @@
     <meta name="geo.placename" content="Bekasi">
     <meta name="geo.position" content="-6.2383;106.9756">
     <meta name="ICBM" content="-6.2383, 106.9756">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://your-domain.com/">
-    
+
     <!-- Alternate languages -->
     <link rel="alternate" hreflang="id" href="https://your-domain.com/">
     <link rel="alternate" hreflang="x-default" href="https://your-domain.com/">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://your-domain.com/">
@@ -38,17 +41,20 @@
     <meta property="twitter:title" content="Portfolio - Adha Adnan Febryan">
     <meta property="twitter:description" content="Mahasiswa Teknik Informatika dengan fokus web, mobile, dan AI">
     <meta property="twitter:image" content="https://your-domain.com/ryan.jpg">
-    
+
     <title>Portfolio - ADHA ADNAN FEBRYAN</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mobile-fix.css">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="preload" as="image" href="ryan.jpg" imagesrcset="ryan.jpg 1x" imagesizes="(max-width: 600px) 60vw, 400px">
+    <link rel="preload" as="image" href="ryan.jpg" imagesrcset="ryan.jpg 1x"
+        imagesizes="(max-width: 600px) 60vw, 400px">
+    <link rel="stylesheet" href="mobile-fix.css">
+    <link rel="stylesheet" href="authoritative-fix.css?v=9">
     <style>
         .sr-only {
             position: absolute;
@@ -61,7 +67,7 @@
             white-space: nowrap;
             border: 0;
         }
-        
+
         .skip-link {
             position: absolute;
             top: -40px;
@@ -73,16 +79,17 @@
             z-index: 1000;
             border-radius: 4px;
         }
-        
+
         .skip-link:focus {
             top: 6px;
         }
     </style>
 </head>
+
 <body>
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
@@ -114,494 +121,546 @@
     <main id="main-content">
         <!-- Hero Section -->
         <header id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="design-badge">
-                        <i class="fas fa-palette"></i>
-                        <span>Creative Designer & Developer</span>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="design-badge">
+                            <i class="fas fa-palette"></i>
+                            <span>Creative Designer & Developer</span>
+                        </div>
+                        <h1 class="hero-title">
+                            Hi, I'm Adha Adnan Febryan
+                        </h1>
+                        <h2 class="hero-subtitle">Mahasiswa Teknik Informatika</h2>
+                        <p class="hero-description">
+                            Passionate about creating innovative solutions through technology.
+                            Currently pursuing Computer Science with focus on web development,
+                            mobile apps, and artificial intelligence.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn btn-primary" aria-label="View my portfolio projects">View My
+                                Work</a>
+                            <a href="#contact" class="btn btn-secondary" aria-label="Contact me">Get In Touch</a>
+                        </div>
                     </div>
-                    <h1 class="hero-title">
-                        Hi, I'm Adha Adnan Febryan
-                    </h1>
-                    <h2 class="hero-subtitle">Mahasiswa Teknik Informatika</h2>
-                    <p class="hero-description">
-                        Passionate about creating innovative solutions through technology. 
-                        Currently pursuing Computer Science with focus on web development, 
-                        mobile apps, and artificial intelligence.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary" aria-label="View my portfolio projects">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary" aria-label="Contact me">Get In Touch</a>
+                    <div class="hero-image">
+                        <div class="image-container">
+                            <div class="profile-photo">
+                                <img src="ryan.jpg" alt="Adha Adnan Febryan - Mahasiswa Teknik Informatika"
+                                    id="profile-img" width="400" height="400" loading="eager" fetchpriority="high"
+                                    decoding="async">
+                            </div>
+                            <div class="floating-elements">
+                                <div class="floating-element element-1"></div>
+                                <div class="floating-element element-2"></div>
+                                <div class="floating-element element-3"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="image-container">
-                        <div class="profile-photo">
-                            <img src="ryan.jpg" alt="Adha Adnan Febryan - Mahasiswa Teknik Informatika" id="profile-img" width="400" height="400" loading="eager" fetchpriority="high" decoding="async">
-                        </div>
-                        <div class="floating-elements">
-                            <div class="floating-element element-1"></div>
-                            <div class="floating-element element-2"></div>
-                            <div class="floating-element element-3"></div>
-                        </div>
-                    </div>
-                </div> 
             </div>
-        </div>
-        <div class="design-accent-1"></div>
-        <div class="design-accent-2"></div>
-        <div class="design-accent-3"></div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-        </div>
+            <div class="design-accent-1"></div>
+            <div class="design-accent-2"></div>
+            <div class="design-accent-3"></div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
         </header>
 
-     <!-- Schedule Section -->
-     <section id="schedule" class="schedule">
-        <div class="container">
-            <h2 class="section-title">Jadwal Mata Kuliah</h2>
-            <div class="schedule-content">
-                <div class="schedule-table-container">
-                    <table class="schedule-table">
-                        <thead>
-                            <tr>
-                                <th>Mata Kuliah</th>
-                                <th>Hari</th>
-                                <th>Semester</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1. Pemrograman Web 1</td>
-                                <td>Jumat</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                            <tr>
-                                <td>2. Pemrograman Mobile 1</td>
-                                <td>Jumat</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                            <tr>
-                                <td>3. Pemrograman Berorientasi Objek</td>
-                                <td>Sabtu</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                            <tr>
-                                <td>4. Jaringan Komputer</td>
-                                <td>Sabtu</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                            <tr>
-                                <td>5. Pendidikan Agama 3</td>
-                                <td>Minggu</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                            <tr>
-                                <td>6. Probabilitas Dan Statistika</td>
-                                <td>Minggu</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                            <tr>
-                                <td>7. Rekayasa Perangkat Lunak</td>
-                                <td>Minggu</td>
-                                <td>• 3 (Tiga)</td>
-                            </tr>
-                           
-                        </tbody>
-                    </table>
-                </div>
-                <aside class="schedule-info">
-                    <h3>Informasi Akademik</h3>
-                    <div class="academic-stats">
-                        <div class="academic-stat">
-                            <h4>7</h4>
-                            <p>Mata Kuliah</p>
-                        </div>
-                        <div class="academic-stat">
-                            <h4>3</h4>
-                            <p>Semester</p>
-                        </div>
-                        <div class="academic-stat">
-                            <h4>3.9</h4>
-                            <p>IPK</p>
-                        </div>
-                    </div>
-                    <div class="current-semester">
-                        <h4>Semester Aktif</h4>
-                        <p>Semester 3 - Teknik Informatika</p>
-                        <span class="semester-badge">Sedang Berjalan</span>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </section>
+        <!-- Schedule Section -->
+        <section id="schedule" class="schedule">
+            <div class="container">
+                <h2 class="section-title">Jadwal Mata Kuliah</h2>
+                <div class="schedule-content">
+                    <div class="schedule-table-container">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Mata Kuliah</th>
+                                    <th>Hari</th>
+                                    <th>Semester</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1. Pemrograman Web 1</td>
+                                    <td>Jumat</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
+                                <tr>
+                                    <td>2. Pemrograman Mobile 1</td>
+                                    <td>Jumat</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
+                                <tr>
+                                    <td>3. Pemrograman Berorientasi Objek</td>
+                                    <td>Sabtu</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
+                                <tr>
+                                    <td>4. Jaringan Komputer</td>
+                                    <td>Sabtu</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
+                                <tr>
+                                    <td>5. Pendidikan Agama 3</td>
+                                    <td>Minggu</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
+                                <tr>
+                                    <td>6. Probabilitas Dan Statistika</td>
+                                    <td>Minggu</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
+                                <tr>
+                                    <td>7. Rekayasa Perangkat Lunak</td>
+                                    <td>Minggu</td>
+                                    <td>• 3 (Tiga)</td>
+                                </tr>
 
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <article class="about-content">
-                <div class="about-text">
-                    <p>
-                        Saya adalah mahasiswa Teknik Informatika yang memiliki passion dalam 
-                        pengembangan teknologi. Dengan pengalaman dalam berbagai bahasa pemrograman 
-                        dan framework modern, saya selalu berusaha untuk menciptakan solusi yang 
-                        inovatif dan user-friendly.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>2</h3>
-                            <p>Tahun Pengalaman</p>
-                        </div>
-                        <div class="stat">
-                            <h3>15</h3>
-                            <p>Proyek Selesai</p>
-                        </div>
-                        <div class="stat">
-                            <h3>5</h3>
-                            <p>Teknologi Dikuasai</p>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div class="about-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h4>2020 - 2021</h4>
-                            <h5>Customer Service</h5>
-                            <p>CV. Karunia Photo Tegal</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h4>2021 -2024</h4>
-                            <h5>PT. ASTRA HONDA MOTOR</h5>
-                            <p>OPERATOR PRODUKSI</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h4>2024 - sampai sekarang</h4>
-                            <h5>Teknik Informatika</h5>
-                            <p>Universitas [Pelita Bangsa]</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">HTML/CSS</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">JavaScript</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">React</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Vue.js</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Backend Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Node.js</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Python</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">PHP</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">MySQL</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Mobile Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">React Native</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Flutter</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="65"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Tools & Others</h3>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Git</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Docker</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="60"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-label">
-                            <span class="skill-name">Figma</span>
-                            <span class="skill-percentage">0%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-filter" role="tablist" aria-label="Project categories">
-                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" aria-controls="projects-grid">All</button>
-                <button class="filter-btn" data-filter="web" role="tab" aria-selected="false" aria-controls="projects-grid">Web</button>
-                <button class="filter-btn" data-filter="mobile" role="tab" aria-selected="false" aria-controls="projects-grid">Mobile</button>
-                <button class="filter-btn" data-filter="design" role="tab" aria-selected="false" aria-controls="projects-grid">Design</button>
-                <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false" aria-controls="projects-grid">AI/ML</button>
-            </div>
-            <div class="projects-grid" id="projects-grid" role="tabpanel" aria-labelledby="projects">
-                <div class="project-card" data-category="web">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="projects/kalkulator.html" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Kalkulator Web project"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/ryan73147/kalkulator-web" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Kalkulator Web source code on GitHub"><i class="fab fa-github"></i></a>
+                    <aside class="schedule-info">
+                        <h3>Informasi Akademik</h3>
+                        <div class="academic-stats">
+                            <div class="academic-stat">
+                                <h4>7</h4>
+                                <p>Mata Kuliah</p>
                             </div>
-                            <div style="padding:12px 0 0 0;"><a href="projects/kalkulator.html" class="btn btn-secondary">Details</a></div>
+                            <div class="academic-stat">
+                                <h4>3</h4>
+                                <p>Semester</p>
+                            </div>
+                            <div class="academic-stat">
+                                <h4>3.9</h4>
+                                <p>IPK</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Kalkulator Web</h3>
-                        <p>Kalkulator sederhana dengan HTML, CSS, dan JavaScript</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                        <div class="current-semester">
+                            <h4>Semester Aktif</h4>
+                            <p>Semester 3 - Teknik Informatika</p>
+                            <span class="semester-badge">Sedang Berjalan</span>
                         </div>
-                    </div>
+                    </aside>
                 </div>
-                
-                <div class="project-card" data-category="ai">
-                    <div class="project-image" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/ryan02-22/bot-assisten" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Bot Assisten source code on GitHub"><i class="fab fa-github"></i></a>
-                                <a href="https://github.com/ryan02-22/bot-assisten" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Bot Assisten repository"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <article class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Saya adalah mahasiswa Teknik Informatika yang memiliki passion dalam
+                            pengembangan teknologi. Dengan pengalaman dalam berbagai bahasa pemrograman
+                            dan framework modern, saya selalu berusaha untuk menciptakan solusi yang
+                            inovatif dan user-friendly.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <h3>2</h3>
+                                <p>Tahun Pengalaman</p>
+                            </div>
+                            <div class="stat">
+                                <h3>15</h3>
+                                <p>Proyek Selesai</p>
+                            </div>
+                            <div class="stat">
+                                <h3>5</h3>
+                                <p>Teknologi Dikuasai</p>
                             </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Bot Assisten</h3>
-                        <p>Chat bot Telegram profesional berbahasa Indonesia yang terhubung ke Google Sheets untuk mengelola jadwal kuliah dan daftar tugas. Dibangun dengan Go untuk performa tinggi dan efisiensi.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Go</span>
-                            <span class="tech-tag">Telegram Bot</span>
-                            <span class="tech-tag">Google Sheets API</span>
-                            <span class="tech-tag">Docker</span>
+                    <div class="about-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2020 - 2021</h4>
+                                <h5>Customer Service</h5>
+                                <p>CV. Karunia Photo Tegal</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="mobile">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/ryan02-22/SmartAttedanceApp" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Smart Attendance App source code on GitHub"><i class="fab fa-github"></i></a>
-                                <a href="https://github.com/ryan02-22/SmartAttedanceApp" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Smart Attendance App repository"><i class="fas fa-external-link-alt"></i></a>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2021 -2024</h4>
+                                <h5>PT. ASTRA HONDA MOTOR</h5>
+                                <p>OPERATOR PRODUKSI</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2024 - sampai sekarang</h4>
+                                <h5>Teknik Informatika</h5>
+                                <p>Universitas [Pelita Bangsa]</p>
                             </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Smart Attendance App</h3>
-                        <p>Aplikasi Android modern untuk sistem absensi digital berbasis mobile. Memudahkan pengelolaan absensi dengan teknologi mobile yang efisien dan user-friendly.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">Android</span>
-                            <span class="tech-tag">Mobile App</span>
-                            <span class="tech-tag">Gradle</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend Development</h3>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">HTML/CSS</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-category="design">
-                    <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://nest-close-47477754.figma.site" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Figma Design project"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://nest-close-47477754.figma.site" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Figma Design on Figma"><i class="fab fa-figma"></i></a>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">React</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Vue.js</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>UI/UX Design Project</h3>
-                        <p>Desain website modern dengan Figma. Prototipe interaktif yang menunjukkan kemampuan dalam UI/UX design dan visual design untuk web application. Menampilkan proses design thinking, wireframing, prototyping, dan user experience yang optimal.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Figma</span>
-                            <span class="tech-tag">UI/UX Design</span>
-                            <span class="tech-tag">Prototyping</span>
-                            <span class="tech-tag">Wireframing</span>
-                            <span class="tech-tag">Visual Design</span>
+
+                    <div class="skill-category">
+                        <h3>Backend Development</h3>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Node.js</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">PHP</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">MySQL</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Mobile Development</h3>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">React Native</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Flutter</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Tools & Others</h3>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Git</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Docker</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="60"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-label">
+                                <span class="skill-name">Figma</span>
+                                <span class="skill-percentage">0%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-
-
-
-   
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="cta-inline" style="margin:20px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-                <a class="btn btn-primary" href="https://wa.me/6282328649895?text=Halo,%20saya%20ingin%20diskusi%20tentang%20pembuatan%20website." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect!</h3>
-                    <p>I'm always interested in new opportunities and exciting projects. 
-                       Feel free to reach out if you'd like to work together!</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>ryan73147@gmail.com</span>
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-filter" role="tablist" aria-label="Project categories">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true"
+                        aria-controls="projects-grid">All</button>
+                    <button class="filter-btn" data-filter="web" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">Web</button>
+                    <button class="filter-btn" data-filter="mobile" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">Mobile</button>
+                    <button class="filter-btn" data-filter="design" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">Design</button>
+                    <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false"
+                        aria-controls="projects-grid">AI/ML</button>
+                </div>
+                <div class="projects-grid" id="projects-grid" role="tabpanel" aria-labelledby="projects">
+                    <div class="project-card" data-category="web">
+                        <div class="project-image"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="projects/kalkulator.html" class="project-link" target="_blank"
+                                        rel="noopener noreferrer" aria-label="View Kalkulator Web project"><i
+                                            class="fas fa-external-link-alt"></i></a>
+                                    <a href="https://github.com/ryan73147/kalkulator-web" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Kalkulator Web source code on GitHub"><i
+                                            class="fab fa-github"></i></a>
+                                </div>
+                                <div style="padding:12px 0 0 0;"><a href="projects/kalkulator.html"
+                                        class="btn btn-secondary">Details</a></div>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+62 823-2864-9895</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Bekasi, Indonesia</span>
+                        <div class="project-content">
+                            <h3>Kalkulator Web</h3>
+                            <p>Kalkulator sederhana dengan HTML, CSS, dan JavaScript</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://github.com/ryan02-22" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/r.y.a.n_adnan" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit my Instagram profile"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Visit my Twitter profile"><i class="fab fa-twitter"></i></a>
+
+                    <div class="project-card" data-category="ai">
+                        <div class="project-image"
+                            style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://github.com/ryan02-22/bot-assisten" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Bot Assisten source code on GitHub"><i
+                                            class="fab fa-github"></i></a>
+                                    <a href="https://github.com/ryan02-22/bot-assisten" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Bot Assisten repository"><i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Bot Assisten</h3>
+                            <p>Chat bot Telegram profesional berbahasa Indonesia yang terhubung ke Google Sheets untuk
+                                mengelola jadwal kuliah dan daftar tugas. Dibangun dengan Go untuk performa tinggi dan
+                                efisiensi.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">Telegram Bot</span>
+                                <span class="tech-tag">Google Sheets API</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://github.com/ryan02-22/SmartAttedanceApp" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Smart Attendance App source code on GitHub"><i
+                                            class="fab fa-github"></i></a>
+                                    <a href="https://github.com/ryan02-22/SmartAttedanceApp" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Smart Attendance App repository"><i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Smart Attendance App</h3>
+                            <p>Aplikasi Android modern untuk sistem absensi digital berbasis mobile. Memudahkan
+                                pengelolaan absensi dengan teknologi mobile yang efisien dan user-friendly.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Android</span>
+                                <span class="tech-tag">Mobile App</span>
+                                <span class="tech-tag">Gradle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="design">
+                        <div class="project-image"
+                            style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://nest-close-47477754.figma.site" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Figma Design project"><i
+                                            class="fas fa-external-link-alt"></i></a>
+                                    <a href="https://nest-close-47477754.figma.site" class="project-link"
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="View Figma Design on Figma"><i class="fab fa-figma"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>UI/UX Design Project</h3>
+                            <p>Desain website modern dengan Figma. Prototipe interaktif yang menunjukkan kemampuan dalam
+                                UI/UX design dan visual design untuk web application. Menampilkan proses design
+                                thinking, wireframing, prototyping, dan user experience yang optimal.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">UI/UX Design</span>
+                                <span class="tech-tag">Prototyping</span>
+                                <span class="tech-tag">Wireframing</span>
+                                <span class="tech-tag">Visual Design</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form" aria-label="Contact Form">
-                    <fieldset>
-                        <legend>Send me a message</legend>
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder=" " required aria-describedby="name-help">
-                            <label for="name">Name</label>
-                            <div id="name-help" class="sr-only">Enter your full name</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder=" " required aria-describedby="email-help">
-                            <label for="email">Email</label>
-                            <div id="email-help" class="sr-only">Enter your email address</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder=" " required aria-describedby="subject-help">
-                            <label for="subject">Subject</label>
-                            <div id="subject-help" class="sr-only">Enter the subject of your message</div>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" placeholder=" " required aria-describedby="message-help"></textarea>
-                            <label for="message">Message</label>
-                            <div id="message-help" class="sr-only">Enter your message here</div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </fieldset>
-                </form>
             </div>
-        </div>
-    </section>
+        </section>
+
+
+
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="cta-inline" style="margin:20px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                    <a class="btn btn-primary"
+                        href="https://wa.me/6282328649895?text=Halo,%20saya%20ingin%20diskusi%20tentang%20pembuatan%20website."
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect!</h3>
+                        <p>I'm always interested in new opportunities and exciting projects.
+                            Feel free to reach out if you'd like to work together!</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>ryan73147@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+62 823-2864-9895</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bekasi, Indonesia</span>
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/ryan02-22" class="social-link" target="_blank"
+                                rel="noopener noreferrer" aria-label="Visit my GitHub profile"><i
+                                    class="fab fa-github"></i></a>
+                            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Visit my LinkedIn profile"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/r.y.a.n_adnan" class="social-link" target="_blank"
+                                rel="noopener noreferrer" aria-label="Visit my Instagram profile"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Visit my Twitter profile"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form" aria-label="Contact Form">
+                        <fieldset>
+                            <legend>Send me a message</legend>
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder=" " required
+                                    aria-describedby="name-help">
+                                <label for="name">Name</label>
+                                <div id="name-help" class="sr-only">Enter your full name</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder=" " required
+                                    aria-describedby="email-help">
+                                <label for="email">Email</label>
+                                <div id="email-help" class="sr-only">Enter your email address</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder=" " required
+                                    aria-describedby="subject-help">
+                                <label for="subject">Subject</label>
+                                <div id="subject-help" class="sr-only">Enter the subject of your message</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="5" placeholder=" " required
+                                    aria-describedby="message-help"></textarea>
+                                <label for="message">Message</label>
+                                <div id="message-help" class="sr-only">Enter your message here</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -616,7 +675,7 @@
     </button>
 
     <script src="script.js" defer></script>
-    
+
     <!-- Google Analytics - Uncomment and add your tracking ID when ready -->
     <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
@@ -627,7 +686,7 @@
         gtag('config', 'YOUR_TRACKING_ID');
     </script>
     -->
-    
+
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
@@ -668,6 +727,6 @@
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
 </body>
+
 </html>
