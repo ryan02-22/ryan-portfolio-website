@@ -226,41 +226,74 @@
     }
 }
 
-/* For very small screens (375px and below), single column */
+/* For very small screens (375px and below), KEEP 2-column layout */
 @media (max-width: 23.4375rem) {
     html body .hero-content {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-        text-align: center !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+        text-align: left !important;
     }
 
     html body .hero-text {
-        order: 1 !important;
-        align-items: center !important;
-        text-align: center !important;
+        order: 0 !important;
+        align-items: flex-start !important;
+        text-align: left !important;
     }
 
     html body .hero-image {
-        order: 2 !important;
+        order: 0 !important;
     }
 
     html body .hero-title,
     html body .hero-subtitle,
     html body .hero-description {
-        text-align: center !important;
+        text-align: left !important;
     }
 
     html body .hero-subtitle::after {
-        left: 50% !important;
-        transform: translateX(-50%) !important;
+        left: 0 !important;
+        transform: none !important;
     }
 
     html body .design-badge {
-        justify-content: center !important;
+        justify-content: flex-start !important;
     }
 
     html body .hero-buttons {
-        justify-content: center !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Scale down elements more for very small screens */
+    html body .image-container {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    html body .profile-photo {
+        width: 90px !important;
+        height: 90px !important;
+    }
+
+    html body .hero-title {
+        font-size: 1rem !important;
+    }
+
+    html body .hero-subtitle {
+        font-size: 0.7rem !important;
+    }
+
+    html body .hero-description {
+        font-size: 0.6rem !important;
+    }
+
+    html body .design-badge {
+        font-size: 0.55rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    html body .hero-buttons .btn {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.6rem !important;
     }
 }
 
