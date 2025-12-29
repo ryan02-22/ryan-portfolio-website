@@ -295,6 +295,25 @@
         padding: 0.4rem 0.6rem !important;
         font-size: 0.6rem !important;
     }
+
+    /* Nav logo - ensure full text visible */
+    html body .nav-logo {
+        font-size: 1rem !important;
+        white-space: nowrap !important;
+    }
+
+    html body .nav-logo a {
+        font-size: 1rem !important;
+    }
+
+    /* Reduce nav right gap */
+    html body .nav-right {
+        gap: 0.4rem !important;
+    }
+
+    html body .nav-container {
+        padding: 0.5rem 0.5rem !important;
+    }
 }
 
 /* ========== ANIMATIONS (same as desktop) ========== */
