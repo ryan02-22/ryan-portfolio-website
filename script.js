@@ -175,7 +175,7 @@ const skillsObserver = new IntersectionObserver((entries) => {
                     if (progressBar && percentageElement) {
                         const targetWidth = progressBar.getAttribute('data-width');
                         progressBar.style.width = targetWidth + '%';
-                        animateCounter(percentageElement, parseInt(targetWidth), 2000);
+                        animateCounter(percentageElement, parseInt(targetWidth), 800);
                     }
                 }, index * 100);
             });

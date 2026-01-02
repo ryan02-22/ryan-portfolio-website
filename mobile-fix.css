@@ -72,7 +72,11 @@ body {
     .schedule {
         will-change: auto;
         contain: layout;
-        transform: translateZ(0);
+    }
+
+    html,
+    body {
+        overscroll-behavior: auto !important;
     }
 }
 
